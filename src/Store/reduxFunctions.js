@@ -7,7 +7,7 @@ export function initiateLogin(cred){
         // send it with the body
         dispatch({type: LOGIN_REQUEST})
         try{
-            const response = await fetch("http://localhost:8080//login", {
+            const response = await fetch("http://localhost:8080/login", {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json', // willing to accept
