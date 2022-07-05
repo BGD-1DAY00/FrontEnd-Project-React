@@ -1,23 +1,26 @@
 import {useState} from "react";
 import {useDispatch} from 'react-redux';
+import {initiateLogin} from "../Store/reduxFunctions";
+
 export function Login(){
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [role, setRole] = useState('');
 
-    //const dispatch = useDispatch();
+    const dispatch = useDispatch();
     function addUsername(e){
         setUsername(e.target.value);
     }
     function addPassword(e){
         setPassword(e.target.value);
     }
-    function addUser(e){
-      e.preventDefault()
-    }
     function handleRole(e){
         setRole(e.target.value)
+    }
+    function addUser(e){
+        e.preventDefault()
+        dispatch(initiateLogin({username, password, role}))
     }
 
     return(
