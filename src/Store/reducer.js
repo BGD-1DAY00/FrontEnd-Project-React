@@ -1,4 +1,4 @@
-import {LOGIN_SUCCESS} from "./actions";
+import {GET_USERLIST, LOGIN_SUCCESS} from "./actions";
 
 
 const initLogin = {
@@ -15,6 +15,24 @@ export function login(state = initLogin, action){
         }
         default:
             return{
+                ...state
+            }
+    }
+}
+
+const initUser = {
+    userList: [],
+}
+
+export function user(state = initUser, action) {
+    switch(action.type) {
+        case GET_USERLIST:
+            return {
+                ...state,
+                userList: action.userList
+            }
+        default:
+            return {
                 ...state
             }
     }

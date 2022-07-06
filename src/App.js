@@ -6,6 +6,8 @@ import {Applicant} from "./Applicant/Applicant";
 
 function App() {
     const role = useSelector(state => state.login.role)
+    const userList = useSelector(state => state.user.userList)
+
     if(role === 'applicant'){
         return (
             <Applicant />
