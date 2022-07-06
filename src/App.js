@@ -12,11 +12,14 @@ function App() {
             <Applicant />
         )
     }
-    if(role == 'recruiter'){
+    if(role === 'recruiter'){
         //return <Recruiter />
     }
     if(role === 'admin'){
-        return <Admin />
+        return <>
+            <h1>Admin page</h1>
+            <Admin />
+        </>
     }
 
 

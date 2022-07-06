@@ -1,5 +1,7 @@
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
-
+export const CREATE_USER = "CREATE_USER";
+export const CREATE_USER_FAILED = "CREATE_USER_FAILED";
+export const CREATE_USER_SUCCESS = "CREATE_USER_SUCCESS";
 

@@ -1,7 +1,13 @@
 import {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {createUser} from "../Store/reduxFunctions";
 
 export function CreateComponent() {
+
+    let {token, createUserMessage} = useSelector(state => ({
+        token: state.login.token,
+        createUserMessage: state.admin.createUserMessage
+    }))
 
     const newUser = {
         username: '',
@@ -17,7 +23,7 @@ export function CreateComponent() {
     // const [password, setPassword] = useState('')
     // const [checked, setChecked] = useState(false)
     // console.log(checked)
-    //const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     function updateUsername(e){
         setFormState({
@@ -51,6 +57,7 @@ export function CreateComponent() {
     }
     function addUser(e) {
         e.preventDefault()
+        dispatch(createUser({formState: formState, token: token}))
     }
 
     console.log(formState)
@@ -70,6 +77,8 @@ export function CreateComponent() {
                 <input type="checkbox" onChange={updateAdminRole} checked={formState.adminRole} />  Admin
 
                 <button  type='submit'>Submit</button>
+
+                {createUserMessage && <div>{createUserMessage}</div>}
                 </form>
         </>   )
 }
