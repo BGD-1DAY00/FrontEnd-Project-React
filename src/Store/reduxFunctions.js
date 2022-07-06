@@ -16,7 +16,9 @@ export function initiateLogin(cred){
                 body: JSON.stringify(cred)
 
             })
-            dispatch({type: LOGIN_SUCCESS})
+            const data = await response.json();
+            console.log(data);
+            dispatch({type: LOGIN_SUCCESS, token: data, role: cred?.role})
         }catch(e){
             dispatch({type:LOGIN_FAIL})
         }

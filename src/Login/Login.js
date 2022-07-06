@@ -6,9 +6,10 @@ export function Login(){
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [role, setRole] = useState('');
+    const [role, setRole] = useState();
 
     const dispatch = useDispatch();
+
     function addUsername(e){
         setUsername(e.target.value);
     }
@@ -20,6 +21,7 @@ export function Login(){
     }
     function addUser(e){
         e.preventDefault()
+        // async function to the backend
         dispatch(initiateLogin({username, password, role}))
     }
 
