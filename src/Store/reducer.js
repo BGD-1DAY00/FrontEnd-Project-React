@@ -2,7 +2,7 @@ import {LOGIN_SUCCESS} from "./actions";
 
 
 const initLogin = {
-    role: null,
+    role: 'admin',
     token: null,
 }
 export function login(state = initLogin, action){
