@@ -47,10 +47,12 @@ export function createUser(cred) {
                 },
                 body: JSON.stringify(cred.formState)
             })
-            dispatch({type: CREATE_USER_SUCCESS})
-            // dispatch({type: LOGIN_SUCCESS})
+            if (response.ok)
+                dispatch({type: CREATE_USER_SUCCESS})
+            else
+                dispatch({type: CREATE_USER_FAILED})
         } catch (e) {
-            dispatch({type: CREATE_USER_FAILED})
+
         }
     }
 }
