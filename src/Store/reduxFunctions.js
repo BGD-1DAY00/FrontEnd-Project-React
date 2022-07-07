@@ -74,7 +74,7 @@ export function createUser(cred) {
 
 export function initiateCreateQuiz(quiz) {
     return async function sideEffect(dispatch) {
-        dispatch({type: CREATE_QUIZ})
+        // dispatch({type: CREATE_QUIZ})
         try {
             const response = await fetch("http://localhost:8080/createQuiz", {
                 method: 'POST',

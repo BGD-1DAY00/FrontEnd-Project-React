@@ -4,7 +4,7 @@
 // Input - Question? (title like)
 // Buttons - Create quiz/template
 
-import {getUserList, initiateCreateQuiz} from "../Store/reduxFunctions";
+import {getQuizList, getUserList, initiateCreateQuiz} from "../Store/reduxFunctions";
 import {useDispatch, useSelector} from "react-redux";
 import {useState, useEffect} from "react";
 
@@ -33,6 +33,7 @@ export function QuizInput(props) {
         //dispatch
         // dispatch(initiateCreateQuiz(formState.quizQuestion, formState.applicant, formState.finished, formState.grade))
         dispatch(initiateCreateQuiz(formState))
+        dispatch(getQuizList())
     }
 
     function onQuestionChange(e) {

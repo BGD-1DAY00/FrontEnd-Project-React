@@ -7,16 +7,15 @@ export function QuizList() {
 
     const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     dispatch(getQuizList())
-    // }, [])
+    useEffect(() => {
+        dispatch(getQuizList())}, [])
 
 
     const quizList = useSelector(state => state.quiz.quizList)
     console.log(quizList)
 
     const ungradedQuizList = quizList.filter(quiz => quiz.finished === false)
-    const gradedQuizList = quizList.filter(quiz => quiz.finished)
+    const gradedQuizList = quizList.filter(quiz => quiz.finished === true)
 
     return <>
         <div className={"hdr1"}><h1>Ungraded Quizzes</h1></div>
@@ -25,7 +24,7 @@ export function QuizList() {
             {
                 ungradedQuizList.map((quizData, idx) => {
                     return <div key={"ungraded" + idx} className={'ungradedQuizList'}>
-                        <Quiz quiz={quizData}/>
+                        <Quiz quizData={quizData}/>
                         {/*<_Quiz quiz={quizData} onEditSelect={onEditSelect} onDelete={onDelete}/>*/}
                                                     {/*questioning whether we will need this*/}
                     </div>
@@ -37,7 +36,7 @@ export function QuizList() {
             {
                 gradedQuizList.map((quizData, idx) => {
                     return <div key={"graded" + idx} className={'gradedQuizList'}>
-                        <Quiz quiz={quizData}/>
+                        <Quiz quizData={quizData}/>
                         {/*<_Quiz quiz={quizData} onEditSelect={onEditSelect} onDelete={onDelete}/>*/}
                                                     {/*questioning whether we will need this*/}
                     </div>

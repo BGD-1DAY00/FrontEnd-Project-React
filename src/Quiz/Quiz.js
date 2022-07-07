@@ -1,16 +1,17 @@
 import {useDispatch} from "react-redux";
 
-export function Quiz({quizQuestion, grade, applicant, finished}) {
+export function Quiz({quizData}) {
 
     const dispatch = useDispatch();
 
+    console.log(quizData.quizQuestion)
     return <div className={"quiz"}>
 
-        {quizQuestion}
+        <span>{quizData.quizQuestion}</span>
         {/*might have to change this - its reading as function*/}
-        {grade}
-        {applicant}
-        {finished}
+        <span>{quizData.grade}</span>
+        <span>{quizData.applicant}</span>
+        <span>{quizData.finished}</span>
         {/*not sure this needs to be here*/}
 
         <br/>

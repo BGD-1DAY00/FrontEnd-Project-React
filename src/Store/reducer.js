@@ -75,7 +75,7 @@ export function quiz(state = initQuiz, action) {
         case CREATE_QUIZ:
             return{
                 ...state,
-                quizList: action.quiz
+                quizList: [...state.quizList, action.quiz]
             }
         default:
             return {
