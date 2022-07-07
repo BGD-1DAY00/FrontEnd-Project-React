@@ -73,3 +73,26 @@ export function createUser(cred) {
 	}
 
 }
+
+export function deleteUser(user) {
+	return async function sideEffect(dispatch) {
+		try {
+			const response = await fetch(`http://localhost:8080/deleteUser/${user.user}`, {
+				method: 'DELETE',
+				headers: {
+					"Access-Control-Allow-Origin" : "*"
+				},
+				// body: user
+			})
+			console.log(await response)
+			if (response.ok)
+				console.log("delete successful")
+			else {
+				console.log("delete not successful")
+			}
+			dispatch(getUserList())
+		} catch(e) {
+			console.log(e)
+		}
+	}
+}
