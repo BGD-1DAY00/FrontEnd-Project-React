@@ -1,14 +1,14 @@
 import {Quiz} from "../Quiz/Quiz.js";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "@types/react";
-import {getQuizlist} from "../Store/reduxFunctions";
+import {useEffect} from "react";
+import {getQuizList} from "../Store/reduxFunctions";
 
 export function QuizList(_Quiz = Quiz) {
 
-    const dispatch = useDispatch
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getQuizlist())
+        dispatch(getQuizList())
     }, [])
     let quizList = useSelector(state => state.quiz.quizList)
 
@@ -22,7 +22,7 @@ export function QuizList(_Quiz = Quiz) {
             {
                 ungradedQuizList.map((quizData, idx) => {
                     return <div key={idx} className={'ungradedQuizList'}>
-                        <_Quiz quiz={quizData} onEditSelect={onEditSelect} onDelete={onDelete}/>
+                        {/*<_Quiz quiz={quizData} onEditSelect={onEditSelect} onDelete={onDelete}/>*/}
                                                     {/*questioning whether we will need this*/}
                     </div>
                 })
@@ -33,7 +33,7 @@ export function QuizList(_Quiz = Quiz) {
             {
                 gradedQuizList.map((quizData, idx) => {
                     return <div key={idx} className={'gradedQuizList'}>
-                        <_Quiz quiz={quizData} onEditSelect={onEditSelect} onDelete={onDelete}/>
+                        {/*<_Quiz quiz={quizData} onEditSelect={onEditSelect} onDelete={onDelete}/>*/}
                                                     {/*questioning whether we will need this*/}
                     </div>
                 })
