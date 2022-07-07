@@ -1,4 +1,8 @@
+
+import {GET_USERLIST, LOGIN_SUCCESS} from "./actions";
+
 import {CREATE_USER_FAILED, CREATE_USER_SUCCESS, LOGIN_SUCCESS} from "./actions";
+
 
 
 const initLogin = {
@@ -38,6 +42,24 @@ export function admin(state = initCreateUser, action) {
             }
         default:
             return{
+                ...state
+            }
+    }
+}
+
+const initUser = {
+    userList: [],
+}
+
+export function user(state = initUser, action) {
+    switch(action.type) {
+        case GET_USERLIST:
+            return {
+                ...state,
+                userList: action.userList
+            }
+        default:
+            return {
                 ...state
             }
     }

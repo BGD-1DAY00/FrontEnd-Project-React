@@ -4,7 +4,11 @@ import './index.css';
 import App from './App';
 import {Provider} from 'react-redux';
 import {applyMiddleware, combineReducers, compose,createStore} from "redux";
-import {admin, login} from "./Store/reducer";
+
+import {login, user,admin} from "./Store/reducer";
+
+
+
 
 //boilerplate for async redux; middleware magic
 const asyncMiddleware = storeAPI => next => action => {
@@ -17,8 +21,10 @@ const asyncMiddleware = storeAPI => next => action => {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
+    user
     login,
     admin
+
 })
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(asyncMiddleware)))
 

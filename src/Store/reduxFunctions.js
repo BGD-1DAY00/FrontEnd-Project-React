@@ -1,3 +1,6 @@
+
+import {LOGIN_SUCCESS, LOGIN_REQUEST, LOGIN_FAIL, GET_USERLIST} from "./actions";
+
 import {
     LOGIN_SUCCESS,
     LOGIN_REQUEST,
@@ -7,8 +10,6 @@ import {
     CREATE_USER_FAILED
 } from "./actions";
 import {useSelector} from "react-redux";
-
-
 
 
 export function initiateLogin(cred){
@@ -37,6 +38,24 @@ export function initiateLogin(cred){
     }
 }
 
+
+}
+
+export function getUserList(){
+    return async function sideEffect(dispatch, getState){
+        //sending data --> POST request
+        // send it within the params
+        // send it with the body
+        try{
+            const response = await fetch("http://localhost:8080/getUserList")
+            const data = await response.json();
+            console.log(data);
+            dispatch({type: GET_USERLIST, userList: data})
+        }catch(e){
+        }
+    }
+
+
 export function createUser(cred) {
     return async function sideEffect(dispatch) {
         console.log(cred)
@@ -58,4 +77,5 @@ export function createUser(cred) {
 
         }
     }
+
 }

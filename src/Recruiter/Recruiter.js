@@ -1,3 +1,10 @@
+import {QuizInput} from "../QuizInput/QuizInput";
+
+
 export function Recruiter(){
-    return "recruiter"
+
+    //recruiter folder
+    return <>
+        <QuizInput/>
+    </>
 }
