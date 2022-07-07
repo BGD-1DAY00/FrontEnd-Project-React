@@ -34,7 +34,7 @@ export function UserList() {
 function editUser(e) {
     const selectedUser = userList.filter(s => s.username === formState.user)
     console.log(selectedUser)
-    dispatch({type: EDITING, selectedUser: selectedUser, editing: true})
+    dispatch({type: EDITING, selectedUser: selectedUser})
 }
     return (
         <>

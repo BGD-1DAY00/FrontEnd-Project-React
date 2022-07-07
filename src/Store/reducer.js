@@ -40,7 +40,7 @@ export function admin(state = initCreateUser, action) {
         case EDITING:
             return {
                 ...state,
-                editing: action.editing,
+                editing: true,
                 selectedUser: action.selectedUser
             }
         default:

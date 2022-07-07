@@ -7,10 +7,12 @@ export function CreateComponent() {
     let {token, createUserMessage, editing, selectedUser} = useSelector(state => ({
         token: state.login.token,
         createUserMessage: state.admin.createUserMessage,
-        editing: state.login.editing,
-        selectedUser: state.login.selectedUser
+        editing: state.admin.editing,
+        selectedUser: state.admin.selectedUser
     }))
     console.log(editing)
+
+
 
     const newUser = {
         username: '',
@@ -62,14 +64,15 @@ export function CreateComponent() {
         e.preventDefault()
         dispatch(createUser({formState: formState, token: token}))
     }
+    console.log(selectedUser)
 if (editing) {
     return <>
         <form onSubmit={addUser}>
             <label>Username:
-                <input onChange={updateUsername} value={selectedUser.username} placeholder="username" type='text' />
+                <input value={selectedUser[0].username} placeholder={selectedUser.username} type='text' />
             </label>
             <label>Password:
-                <input onChange={updatePassword} value={selectedUser.password} placeholder="password" type='text' />
+                <input onChange={updatePassword} value={selectedUser[0].password} placeholder={selectedUser.password} type='text' />
             </label>
 
             <input type="checkbox" onChange={updateApplicantRole} checked={formState.applicant} /> Applicant
