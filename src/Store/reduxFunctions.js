@@ -17,6 +17,7 @@ export function initiateLogin(cred){
         // send it within the params
         // send it with the body
         dispatch({type: LOGIN_REQUEST})
+
         try{
             const response = await fetch("http://localhost:8080/login", {
                 method: 'POST',
@@ -38,8 +39,10 @@ export function initiateLogin(cred){
 
 export function createUser(cred) {
     return async function sideEffect(dispatch) {
+        console.log(cred)
+        console.log(cred.formState)
         try {
-            const response = await fetch(`http://localhost:8080/createuser?token=${cred.token}`, {
+            const response = await fetch(`http://localhost:8080/createUser?token=${cred.token}`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json', // willing to accept

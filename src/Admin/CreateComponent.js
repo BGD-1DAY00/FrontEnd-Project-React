@@ -12,9 +12,9 @@ export function CreateComponent() {
     const newUser = {
         username: '',
         password: '',
-        applicantRole: false,
-        recruiterRole: false,
-        adminRole: false
+        applicant: false,
+        recruiter: false,
+        admin: false
     }
 
     const [formState, setFormState] = useState(newUser)
@@ -40,27 +40,25 @@ export function CreateComponent() {
     function updateApplicantRole() {
         setFormState({
             ...formState,
-            applicantRole: !formState.applicantRole
+            applicant: !formState.applicant
         })
     }
     function updateRecruiterRole() {
         setFormState({
             ...formState,
-            recruiterRole: !formState.recruiterRole
+            recruiter: !formState.recruiter
         })
     }
     function updateAdminRole() {
         setFormState({
             ...formState,
-            adminRole: !formState.adminRole
+            admin: !formState.admin
         })
     }
     function addUser(e) {
         e.preventDefault()
         dispatch(createUser({formState: formState, token: token}))
     }
-
-    console.log(formState)
 
     return (
         <>
@@ -72,9 +70,9 @@ export function CreateComponent() {
                     <input onChange={updatePassword} value={formState.password} placeholder="password" type='text' />
                 </label>
 
-                <input type="checkbox" onChange={updateApplicantRole} checked={formState.applicantRole} /> Applicant
-                <input type="checkbox" onChange={updateRecruiterRole} checked={formState.recruiterRole} /> Recruiter
-                <input type="checkbox" onChange={updateAdminRole} checked={formState.adminRole} />  Admin
+                <input type="checkbox" onChange={updateApplicantRole} checked={formState.applicant} /> Applicant
+                <input type="checkbox" onChange={updateRecruiterRole} checked={formState.recruiter} /> Recruiter
+                <input type="checkbox" onChange={updateAdminRole} checked={formState.admin} />  Admin
 
                 <button  type='submit'>Submit</button>
 
