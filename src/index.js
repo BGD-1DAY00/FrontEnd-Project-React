@@ -21,10 +21,9 @@ const asyncMiddleware = storeAPI => next => action => {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-    user
+    user,
     login,
     admin
-
 })
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(asyncMiddleware)))
 
