@@ -26,6 +26,8 @@ export function QuizInput(props) {
     }, [])
     let userList = useSelector(state => state.user.userList)
 
+    console.log(userList)
+
     const [formState, setFormState] = useState(newQuiz)
 
     function onFormSubmit(e) {
@@ -82,7 +84,7 @@ export function QuizInput(props) {
             <label>
                 Applicant:
                 <select onChange={onApplicantChange} defaultValue={"Applicant"}>
-                    <option key={"applicant"} value={"applicant"} disabled>
+                    <option key={"applicant"} value={"Applicant"} disabled>
                         Applicant
                     </option>
                     {
