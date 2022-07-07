@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {createUser} from "../Store/reduxFunctions";
+import {createUser, editUser} from "../Store/reduxFunctions";
 
 export function CreateComponent() {
 
@@ -101,12 +101,16 @@ export function CreateComponent() {
         dispatch(createUser({formState: formState, token: token}))
     }
 
+    function onEditSubmit(e){
+        e.preventDefault()
+        dispatch(editUser(editState, selectedUser[0].username))
+    }
 
     console.log(selectedUser)
 if (editing) {
     console.log(editState)
     return <>
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={onEditSubmit}>
             <label>Username:
                 <input onChange={updateUsername} value={editState.username} placeholder={selectedUser[0].username} type='text' />
             </label>

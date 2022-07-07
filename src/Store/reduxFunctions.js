@@ -96,3 +96,32 @@ export function deleteUser(user) {
 		}
 	}
 }
+export function editUser(userObj, username) {
+
+	// new object
+	// the username for the user to update
+	return async function sideEffect(dispatch) {
+		try {
+			const response = await fetch(`http://localhost:8080/editUser/${username}`, {
+				method: 'PUT',
+				headers: {
+						'Accept': 'application/json', // willing to accept
+						'Content-Type': 'application/json', //defining what we are sending
+					"Access-Control-Allow-Origin" : "*"
+
+
+				},
+				body: JSON.stringify(userObj)
+			})
+			console.log(await response)
+			if (response.ok)
+				console.log("delete successful")
+			else {
+				console.log("delete not successful")
+			}
+			dispatch(getUserList())
+		} catch(e) {
+			console.log(e)
+		}
+	}
+}
