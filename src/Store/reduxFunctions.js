@@ -26,13 +26,13 @@ export function initiateLogin(cred){
 
 }
 
-export function getUserlist(){
+export function getUserList(){
     return async function sideEffect(dispatch, getState){
         //sending data --> POST request
         // send it within the params
         // send it with the body
         try{
-            const response = await fetch("http://localhost:8080/getUserlist")
+            const response = await fetch("http://localhost:8080/getUserList")
             const data = await response.json();
             console.log(data);
             dispatch({type: GET_USERLIST, userList: data})
