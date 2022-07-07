@@ -8,7 +8,11 @@ export function QuizList() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getQuizList())}, [])
+        const interval = setInterval(() => {
+            dispatch(getQuizList());
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [])
 
 
     const quizList = useSelector(state => state.quiz.quizList)
