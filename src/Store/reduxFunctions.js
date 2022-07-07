@@ -1,4 +1,4 @@
-import {LOGIN_SUCCESS, LOGIN_REQUEST, LOGIN_FAIL, GET_USERLIST} from "./actions";
+import {LOGIN_SUCCESS, LOGIN_REQUEST, LOGIN_FAIL, GET_USERLIST, GET_QUIZ_LIST, CREATE_QUIZ} from "./actions";
 
 export function initiateLogin(cred){
     return async function sideEffect(dispatch, getState){
@@ -23,14 +23,10 @@ export function initiateLogin(cred){
             dispatch({type:LOGIN_FAIL})
         }
     }
-
 }
 
 export function getUserlist(){
     return async function sideEffect(dispatch, getState){
-        //sending data --> POST request
-        // send it within the params
-        // send it with the body
         try{
             const response = await fetch("http://localhost:8080/getUserlist")
             const data = await response.json();
@@ -39,5 +35,32 @@ export function getUserlist(){
         }catch(e){
         }
     }
+}
 
+export function initiateCreateQuiz(quiz) {
+    return async function sideEffect(dispatch) {
+        dispatch({type: CREATE_QUIZ})
+        try {
+            const response = await fetch("http://localhost:8080/createQuiz", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json', // willing to accept
+                    'Content-Type': 'application/json' //defining what we are sending
+                },
+                body: JSON.stringify(quiz)
+            })
+        } catch (e) {console.log(e)}
+    }
+}
+
+export function getQuizlist(){
+    return async function sideEffect(dispatch, getState){
+        try{
+            const response = await fetch("http://localhost:8080/getQuizlist")
+            const data = await response.json();
+            console.log(data);
+            dispatch({type: GET_QUIZ_LIST, quizList: data})
+        }catch(e){
+        }
+    }
 }

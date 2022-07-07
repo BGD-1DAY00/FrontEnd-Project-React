@@ -1,4 +1,4 @@
-import {GET_USERLIST, LOGIN_SUCCESS} from "./actions";
+import {GET_QUIZ_LIST, GET_USERLIST, LOGIN_SUCCESS, CREATE_QUIZ} from "./actions";
 
 
 const initLogin = {
@@ -30,6 +30,29 @@ export function user(state = initUser, action) {
             return {
                 ...state,
                 userList: action.userList
+            }
+        default:
+            return {
+                ...state
+            }
+    }
+}
+
+const initQuiz = {
+    quizList: [],
+}
+
+export function quiz(state = initQuiz, action) {
+    switch(action.type) {
+        case GET_QUIZ_LIST:
+            return {
+                ...state,
+                quizList: action.quizList
+            }
+        case CREATE_QUIZ:
+            return{
+                ...state,
+                quizList: action.quiz
             }
         default:
             return {

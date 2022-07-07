@@ -1,21 +1,21 @@
-
-
 // Drop down - applicant - who's being assigned the quiz
 // Input - Question? (title like)
 // Buttons - Create quiz/template
 
-import {getUserlist} from "../Store/reduxFunctions";
+import {getUserlist, initiateCreateQuiz} from "../Store/reduxFunctions";
 import {useDispatch, useSelector} from "react-redux";
 import {useState, useEffect} from "react";
 
 export function QuizInput(props) {
 
-    const {newQuiz = {
-        question: "",
-        grade: "",
-        finished: false,
-        applicant: ""
-    }} = props
+    const {
+        newQuiz = {
+            quizQuestion: "",
+            grade: "",
+            finished: false,
+            applicant: ""
+        }
+    } = props
 
     const dispatch = useDispatch()
 
@@ -29,12 +29,14 @@ export function QuizInput(props) {
     function onFormSubmit(e) {
         e.preventDefault()
         //dispatch
+        // dispatch(initiateCreateQuiz(formState.quizQuestion, formState.applicant, formState.finished, formState.grade))
+        dispatch(initiateCreateQuiz(formState))
     }
 
     function onQuestionChange(e) {
         setFormState({
             ...formState,
-            question: e.target.value
+            quizQuestion: e.target.value
         })
     }
 
@@ -59,11 +61,11 @@ export function QuizInput(props) {
         })
     }
 
-    return<>
+    return <>
         <form onSubmit={onFormSubmit}>
             <label>
                 Question:
-                <input onChange={onQuestionChange} value={formState.question} type={'text'} placeholder={"Question"}/>
+                <input onChange={onQuestionChange} value={formState.quizQuestion} type={'text'} placeholder={"Question"}/>
             </label>
             <label>
                 Grade:
@@ -78,12 +80,12 @@ export function QuizInput(props) {
             <label>
                 Applicant:
                 <select onChange={onApplicantChange} defaultValue={"Applicant"}>
-                <option key={"applicant"} value={"applicant"} disabled>
-                    Applicant
-                </option>
+                    <option key={"applicant"} value={"applicant"} disabled>
+                        Applicant
+                    </option>
                     {
                         userList.map((user, idx) => {
-                            if(user.applicant) {
+                            if (user.applicant) {
                                 return <option key={"quizInput" + idx} value={user.username}>
                                     {user.username}
                                 </option>
