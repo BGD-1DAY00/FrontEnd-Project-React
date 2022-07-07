@@ -1,9 +1,4 @@
-
-import {GET_USERLIST, LOGIN_SUCCESS} from "./actions";
-
-import {CREATE_USER_FAILED, CREATE_USER_SUCCESS, LOGIN_SUCCESS} from "./actions";
-
-
+import {CREATE_USER_FAILED, CREATE_USER_SUCCESS, LOGIN_SUCCESS, GET_USERLIST} from "./actions";
 
 const initLogin = {
     role: null,
