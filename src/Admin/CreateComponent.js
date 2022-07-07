@@ -4,10 +4,13 @@ import {createUser} from "../Store/reduxFunctions";
 
 export function CreateComponent() {
 
-    let {token, createUserMessage} = useSelector(state => ({
+    let {token, createUserMessage, editing, selectedUser} = useSelector(state => ({
         token: state.login.token,
-        createUserMessage: state.admin.createUserMessage
+        createUserMessage: state.admin.createUserMessage,
+        editing: state.login.editing,
+        selectedUser: state.login.selectedUser
     }))
+    console.log(editing)
 
     const newUser = {
         username: '',
@@ -59,7 +62,25 @@ export function CreateComponent() {
         e.preventDefault()
         dispatch(createUser({formState: formState, token: token}))
     }
+if (editing) {
+    return <>
+        <form onSubmit={addUser}>
+            <label>Username:
+                <input onChange={updateUsername} value={selectedUser.username} placeholder="username" type='text' />
+            </label>
+            <label>Password:
+                <input onChange={updatePassword} value={selectedUser.password} placeholder="password" type='text' />
+            </label>
 
+            <input type="checkbox" onChange={updateApplicantRole} checked={formState.applicant} /> Applicant
+            <input type="checkbox" onChange={updateRecruiterRole} checked={formState.recruiter} /> Recruiter
+            <input type="checkbox" onChange={updateAdminRole} checked={formState.admin} />  Admin
+
+            <button  type='submit'>Submit</button>
+
+        </form>
+    </>
+}
     return (
         <>
             <form onSubmit={addUser}>

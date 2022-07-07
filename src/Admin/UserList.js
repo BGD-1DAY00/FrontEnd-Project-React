@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {deleteUser, getUserList} from "../Store/reduxFunctions";
 import {useDispatch, useSelector} from "react-redux";
+import {EDITING} from "../Store/actions";
 
 export function UserList() {
 
@@ -30,7 +31,11 @@ export function UserList() {
     function handleForm(e) {
         e.preventDefault();
     }
-
+function editUser(e) {
+    const selectedUser = userList.filter(s => s.username === formState.user)
+    console.log(selectedUser)
+    dispatch({type: EDITING, selectedUser: selectedUser, editing: true})
+}
     return (
         <>
             <h2>User List</h2>
@@ -43,7 +48,7 @@ export function UserList() {
                         }
                     )}}
                 </select>
-                <button>Edit</button>
+                <button onClick={(e) => {editUser(e)}}>Edit</button>
                 <button onClick={(e) => {dlUser(e)}}>Delete</button>
             </form>
         </>
