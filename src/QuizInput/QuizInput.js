@@ -22,6 +22,7 @@ export function QuizInput(props) {
     useEffect(() => {
         dispatch(getUserlist())
     }, [])
+
     let userList = useSelector(state => state.user.userList)
 
     const [formState, setFormState] = useState(newQuiz)

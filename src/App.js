@@ -3,6 +3,7 @@ import './App.css';
 import {Login} from './Login/Login';
 import {useSelector} from "react-redux";
 import {Applicant} from "./Applicant/Applicant";
+import {Recruiter} from "./Recruiter/Recruiter";
 
 function App() {
     const role = useSelector(state => state.login.role)
@@ -13,10 +14,13 @@ function App() {
             <Applicant />
         )
     }
-    if(role == 'recruiter'){
-        //return <Recruiter />
+    if(role === 'recruiter'){
+        return <>
+            <h1>Recruiter</h1>
+            <Recruiter />
+        </>
     }
-    if(role == 'Admin'){
+    if(role === 'Admin'){
         //return <Admin />
     }
 
