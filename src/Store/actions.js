@@ -4,3 +4,7 @@ export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const GET_USERLIST = "GET_USERLIST";
 export const GET_QUIZ_LIST = "GET_QUIZ_LIST";
 export const CREATE_QUIZ = "CREATE_QUIZ";
+export const CREATE_USER_FAILED = "CREATE_USER_FAILED";
+export const CREATE_USER_SUCCESS = "CREATE_USER_SUCCESS";
+
+

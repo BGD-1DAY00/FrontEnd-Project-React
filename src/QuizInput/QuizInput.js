@@ -1,3 +1,5 @@
+
+
 // Drop down - applicant - who's being assigned the quiz
 // Input - Question? (title like)
 // Buttons - Create quiz/template
@@ -61,7 +63,7 @@ export function QuizInput(props) {
         })
     }
 
-    return <>
+    return<>
         <form onSubmit={onFormSubmit}>
             <label>
                 Question:
