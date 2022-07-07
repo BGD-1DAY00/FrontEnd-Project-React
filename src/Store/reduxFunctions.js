@@ -1,11 +1,24 @@
+
 import {LOGIN_SUCCESS, LOGIN_REQUEST, LOGIN_FAIL, GET_USERLIST} from "./actions";
 
+import {
+    LOGIN_SUCCESS,
+    LOGIN_REQUEST,
+    LOGIN_FAIL,
+    CREATE_USER,
+    CREATE_USER_SUCCESS,
+    CREATE_USER_FAILED
+} from "./actions";
+import {useSelector} from "react-redux";
+
+
 export function initiateLogin(cred){
-    return async function sideEffect(dispatch, getState){
+    return async function sideEffect(dispatch){
         //sending data --> POST request
         // send it within the params
         // send it with the body
         dispatch({type: LOGIN_REQUEST})
+
         try{
             const response = await fetch("http://localhost:8080/login", {
                 method: 'POST',
@@ -23,6 +36,8 @@ export function initiateLogin(cred){
             dispatch({type:LOGIN_FAIL})
         }
     }
+}
+
 
 }
 
@@ -37,6 +52,29 @@ export function getUserList(){
             console.log(data);
             dispatch({type: GET_USERLIST, userList: data})
         }catch(e){
+        }
+    }
+
+
+export function createUser(cred) {
+    return async function sideEffect(dispatch) {
+        console.log(cred)
+        console.log(cred.formState)
+        try {
+            const response = await fetch(`http://localhost:8080/createUser?token=${cred.token}`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json', // willing to accept
+                    'Content-Type': 'application/json' //defining what we are sending
+                },
+                body: JSON.stringify(cred.formState)
+            })
+            if (response.ok)
+                dispatch({type: CREATE_USER_SUCCESS})
+            else
+                dispatch({type: CREATE_USER_FAILED})
+        } catch (e) {
+
         }
     }
 

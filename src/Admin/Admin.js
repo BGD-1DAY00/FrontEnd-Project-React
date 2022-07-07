@@ -1,3 +1,9 @@
+import {CreateComponent} from "./CreateComponent";
+
 export function Admin(){
-    return "admin"
+
+return <>
+    <CreateComponent/>
+</>
+
 }
