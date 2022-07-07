@@ -88,12 +88,12 @@ export function initiateCreateQuiz(quiz) {
     }
 }
 
-export function getQuizlist(){
+export function getQuizList(){
     return async function sideEffect(dispatch, getState){
         try{
-            const response = await fetch("http://localhost:8080/getQuizlist")
+            const response = await fetch("http://localhost:8080/getQuizList")
             const data = await response.json();
-            console.log(data);
+            console.log("incoming list" + data);
             dispatch({type: GET_QUIZ_LIST, quizList: data})
         }catch(e){
         }

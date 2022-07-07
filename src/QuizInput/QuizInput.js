@@ -26,8 +26,6 @@ export function QuizInput(props) {
     }, [])
     let userList = useSelector(state => state.user.userList)
 
-    console.log(userList)
-
     const [formState, setFormState] = useState(newQuiz)
 
     function onFormSubmit(e) {

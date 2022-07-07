@@ -3,17 +3,20 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {getQuizList} from "../Store/reduxFunctions";
 
-export function QuizList(_Quiz = Quiz) {
+export function QuizList() {
 
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getQuizList())
-    }, [])
-    let quizList = useSelector(state => state.quiz.quizList)
+    // useEffect(() => {
+    //     dispatch(getQuizList())
+    // }, [])
 
-    const ungradedQuizList = quizList.filter(q => !q.finished)
-    const gradedQuizList = quizList.filter(q => q.finished)
+
+    const quizList = useSelector(state => state.quiz.quizList)
+    console.log(quizList)
+
+    const ungradedQuizList = quizList.filter(quiz => quiz.finished === false)
+    const gradedQuizList = quizList.filter(quiz => quiz.finished)
 
     return <>
         <div className={"hdr1"}><h1>Ungraded Quizzes</h1></div>
@@ -21,7 +24,8 @@ export function QuizList(_Quiz = Quiz) {
 
             {
                 ungradedQuizList.map((quizData, idx) => {
-                    return <div key={idx} className={'ungradedQuizList'}>
+                    return <div key={"ungraded" + idx} className={'ungradedQuizList'}>
+                        <Quiz quiz={quizData}/>
                         {/*<_Quiz quiz={quizData} onEditSelect={onEditSelect} onDelete={onDelete}/>*/}
                                                     {/*questioning whether we will need this*/}
                     </div>
@@ -32,7 +36,8 @@ export function QuizList(_Quiz = Quiz) {
         <div className={'graded'}>
             {
                 gradedQuizList.map((quizData, idx) => {
-                    return <div key={idx} className={'gradedQuizList'}>
+                    return <div key={"graded" + idx} className={'gradedQuizList'}>
+                        <Quiz quiz={quizData}/>
                         {/*<_Quiz quiz={quizData} onEditSelect={onEditSelect} onDelete={onDelete}/>*/}
                                                     {/*questioning whether we will need this*/}
                     </div>
