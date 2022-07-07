@@ -12,8 +12,6 @@ export function CreateComponent() {
     }))
     console.log(editing)
 
-
-
     const newUser = {
         username: '',
         password: '',
@@ -23,6 +21,7 @@ export function CreateComponent() {
     }
 
     const [formState, setFormState] = useState(newUser)
+	const [editState, setEditState] = useState(newUser)
 
     // const [username, setUsername] = useState('')
     // const [password, setPassword] = useState('')
@@ -30,54 +29,94 @@ export function CreateComponent() {
     // console.log(checked)
     const dispatch = useDispatch();
 
+    console.log(editState)
+
     function updateUsername(e){
-        setFormState({
-            ...formState,
-            username: e.target.value
-        })
+        if (editing) {
+            setEditState({
+                ...editState,
+                username: e.target.value
+            })
+        } else {
+            setFormState({
+                ...formState,
+                username: e.target.value
+            })
+        }
     }
     function updatePassword(e){
-        setFormState({
-            ...formState,
-            password: e.target.value
-        })
+        if (editing) {
+            setEditState({
+                ...editState,
+                password: e.target.value
+            })
+        } else {
+            setFormState({
+                ...formState,
+                password: e.target.value
+            })
+        }
     }
     function updateApplicantRole() {
-        setFormState({
-            ...formState,
-            applicant: !formState.applicant
-        })
+        if (editing) {
+            setEditState({
+                ...editState,
+                applicant: !editState.applicant
+            })
+        } else {
+            setFormState({
+                ...formState,
+                applicant: !formState.applicant
+            })
+        }
     }
     function updateRecruiterRole() {
-        setFormState({
-            ...formState,
-            recruiter: !formState.recruiter
-        })
+        if (editing) {
+            setEditState({
+                ...editState,
+                recruiter: !editState.recruiter
+            })
+        } else {
+            setFormState({
+                ...formState,
+                recruiter: !formState.recruiter
+            })
+        }
     }
     function updateAdminRole() {
-        setFormState({
-            ...formState,
-            admin: !formState.admin
-        })
+        if (editing) {
+            setEditState({
+                ...editState,
+                admin: !editState.admin
+            })
+        } else {
+            setFormState({
+                ...formState,
+                admin: !formState.admin
+            })
+        }
     }
     function addUser(e) {
         e.preventDefault()
         dispatch(createUser({formState: formState, token: token}))
     }
+
+
     console.log(selectedUser)
 if (editing) {
+    console.log(editState)
     return <>
-        <form onSubmit={addUser}>
+        <form onSubmit={(e) => e.preventDefault()}>
             <label>Username:
-                <input value={selectedUser[0].username} placeholder={selectedUser.username} type='text' />
+                <input onChange={updateUsername} value={editState.username} placeholder={selectedUser[0].username} type='text' />
             </label>
             <label>Password:
-                <input onChange={updatePassword} value={selectedUser[0].password} placeholder={selectedUser.password} type='text' />
+                <input onChange={updatePassword} value={editState.password} placeholder={selectedUser[0].password} type='text' />
             </label>
 
-            <input type="checkbox" onChange={updateApplicantRole} checked={formState.applicant} /> Applicant
-            <input type="checkbox" onChange={updateRecruiterRole} checked={formState.recruiter} /> Recruiter
-            <input type="checkbox" onChange={updateAdminRole} checked={formState.admin} />  Admin
+            <input type="checkbox" onChange={updateApplicantRole} checked={editState.applicant} /> Applicant
+            <input type="checkbox" onChange={updateRecruiterRole} checked={editState.recruiter} /> Recruiter
+            <input type="checkbox" onChange={updateAdminRole} checked={editState.admin} />  Admin
 
             <button  type='submit'>Submit</button>
 
@@ -86,6 +125,7 @@ if (editing) {
 }
     return (
         <>
+            <h2>Create User:</h2>
             <form onSubmit={addUser}>
                 <label>Username:
                     <input onChange={updateUsername} value={formState.username} placeholder="username" type='text' />
