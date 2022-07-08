@@ -6,5 +6,6 @@ export const GET_QUIZ_LIST = "GET_QUIZ_LIST";
 export const CREATE_QUIZ = "CREATE_QUIZ";
 export const CREATE_USER_FAILED = "CREATE_USER_FAILED";
 export const CREATE_USER_SUCCESS = "CREATE_USER_SUCCESS";
+export const EDITING = "EDITING"
 
 

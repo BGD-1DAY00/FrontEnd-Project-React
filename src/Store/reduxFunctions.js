@@ -88,6 +88,7 @@ export function initiateCreateQuiz(quiz) {
     }
 }
 
+
 export function getQuizList(){
     return async function sideEffect(dispatch, getState){
         try{
@@ -98,4 +99,58 @@ export function getQuizList(){
         }catch(e){
         }
     }
+
+}
+
+export function deleteUser(user) {
+	return async function sideEffect(dispatch) {
+		try {
+			const response = await fetch(`http://localhost:8080/deleteUser/${user.user}`, {
+				method: 'DELETE',
+				headers: {
+					"Access-Control-Allow-Origin" : "*"
+				},
+				// body: user
+			})
+			console.log(await response)
+			if (response.ok)
+				console.log("delete successful")
+			else {
+				console.log("delete not successful")
+			}
+			dispatch(getUserList())
+		} catch(e) {
+			console.log(e)
+		}
+	}
+}
+export function editUser(userObj, username) {
+
+	// new object
+	// the username for the user to update
+	return async function sideEffect(dispatch) {
+		try {
+			const response = await fetch(`http://localhost:8080/editUser/${username}`, {
+				method: 'PUT',
+				headers: {
+						'Accept': 'application/json', // willing to accept
+						'Content-Type': 'application/json', //defining what we are sending
+					"Access-Control-Allow-Origin" : "*"
+
+
+				},
+				body: JSON.stringify(userObj)
+			})
+			console.log(await response)
+			if (response.ok)
+				console.log("delete successful")
+			else {
+				console.log("delete not successful")
+			}
+			dispatch(getUserList())
+		} catch(e) {
+			console.log(e)
+		}
+	}
+
 }
