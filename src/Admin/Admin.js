@@ -13,7 +13,6 @@ if(impersonate){
     </>
 }
 return <>
-    <h1>Admin page</h1>
     <CreateComponent/>
     <UserList />
 </>
