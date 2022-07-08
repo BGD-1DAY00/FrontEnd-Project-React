@@ -5,7 +5,12 @@ import {
 	CREATE_USER_SUCCESS,
 	CREATE_USER_FAILED,
 	GET_USERLIST,
-	GET_QUIZ_LIST, STOP_QUIZ_EDITING
+
+	GET_QUIZ_LIST, STOP_QUIZ_EDITING,
+
+
+	CREATE_QUIZ, LOGIN_IMPERSONATE_FAILURE, LOGIN_IMPERSONATE_SUCCESS, ADMIN_IMPERSONATE_SUCCESS, EDIT_SUCCESS
+
 } from "./actions";
 
 
@@ -139,8 +144,10 @@ export function editUser(userObj, username) {
 				body: JSON.stringify(userObj)
 			})
 			console.log(await response)
-			if (response.ok)
+			if (response.ok) {
+				dispatch({type: EDIT_SUCCESS})
 				console.log("delete successful")
+			}
 			else {
 				console.log("delete not successful")
 			}
@@ -151,6 +158,7 @@ export function editUser(userObj, username) {
 	}
 
 }
+
 
 export function editQuiz(quizObj, id) {
 
@@ -203,3 +211,23 @@ export function deletingQuiz(id) {
 		}
 	}
 }
+
+export function impersonateUser(username, role) {
+	return async function sideEffect(dispatch) {
+		try {
+			const response = await fetch(`http://localhost:8080/impersonateUser?username=${username}&role=${role}`)
+			console.log(response)
+			const data = await response.json();
+			console.log(data)
+			if (data === true) {
+				dispatch({type: LOGIN_IMPERSONATE_SUCCESS, role})
+				dispatch({type: ADMIN_IMPERSONATE_SUCCESS})
+			} else {
+				dispatch({type: LOGIN_IMPERSONATE_FAILURE})
+			}
+		} catch (e) {
+			console.log(e)
+		}
+	}
+}
+

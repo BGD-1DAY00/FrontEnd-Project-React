@@ -10,6 +10,7 @@ export function Recruiter(){
 
     useEffect(() => {
         dispatch(getQuizList())
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [])
     //recruiter folder
 

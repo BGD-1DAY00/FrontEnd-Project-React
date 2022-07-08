@@ -7,14 +7,19 @@ import {
     LOGIN_SUCCESS,
     CREATE_QUIZ,
     EDITING,
-    QUIZ_EDITING, STOP_QUIZ_EDITING
+
+    QUIZ_EDITING, STOP_QUIZ_EDITING,
+
+    IMPERSONATING, LOGIN_IMPERSONATE_SUCCESS, LOGIN_IMPERSONATE_FAILURE, ADMIN_IMPERSONATE_SUCCESS, EDIT_SUCCESS
+
 } from "./actions";
 
 
 
 const initLogin = {
     role: null,
-    token: null
+    token: null,
+    impersonateFailure: false
 }
 export function login(state = initLogin, action){
     switch(action.type){
@@ -23,6 +28,17 @@ export function login(state = initLogin, action){
                 ...state,
                 token: action.token,
                 role: action.role
+            }
+        case LOGIN_IMPERSONATE_SUCCESS:
+            return {
+                ...state,
+                role: action.role,
+                impersonateFailure: false
+            }
+        case LOGIN_IMPERSONATE_FAILURE:
+            return {
+                ...state,
+                impersonateFailure: true
             }
         default:
             return{
@@ -34,7 +50,8 @@ export function login(state = initLogin, action){
 const initCreateUser = {
     createUserMessage: '',
     editing: null,
-    selectedUser: null
+    impersonating: null,
+    selectedUser: null,
 }
 
 export function admin(state = initCreateUser, action) {
@@ -54,6 +71,24 @@ export function admin(state = initCreateUser, action) {
                 ...state,
                 editing: true,
                 selectedUser: action.selectedUser
+            }
+        case EDIT_SUCCESS:
+            return {
+                ...state,
+                editing: null,
+                selectedUser: null
+            }
+        case IMPERSONATING:
+            return {
+                ...state,
+                impersonating: true,
+                selectedUser: action.selectedUser
+            }
+        case ADMIN_IMPERSONATE_SUCCESS:
+            return {
+                ...state,
+                impersonating: null,
+                selectedUser: null
             }
         default:
             return{
