@@ -33,7 +33,7 @@ export function initiateLogin(cred) {
 			})
 			const data = await response.json();
 			console.log(data);
-			dispatch({type: LOGIN_SUCCESS, token: data, role: cred?.role})
+			dispatch({type: LOGIN_SUCCESS, token: data, role: cred?.role, currentUser: cred.username})
 		} catch (e) {
 			dispatch({type: LOGIN_FAIL})
 		}
@@ -225,6 +225,18 @@ export function impersonateUser(username, role) {
 			} else {
 				dispatch({type: LOGIN_IMPERSONATE_FAILURE})
 			}
+		} catch (e) {
+			console.log(e)
+		}
+	}
+}
+
+export function findSpecificUser(token) {
+	return async function sideEffect(dispatch) {
+		try {
+			const response = await fetch(`http://localhost:8080/findUser?token=${token}`)
+			const data = await response.json();
+			console.log(data)
 		} catch (e) {
 			console.log(e)
 		}

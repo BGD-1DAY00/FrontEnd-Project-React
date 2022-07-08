@@ -19,7 +19,8 @@ import {
 const initLogin = {
     role: null,
     token: null,
-    impersonateFailure: false
+    impersonateFailure: false,
+    currentUser: null,
 }
 export function login(state = initLogin, action){
     switch(action.type){
@@ -27,7 +28,8 @@ export function login(state = initLogin, action){
             return {
                 ...state,
                 token: action.token,
-                role: action.role
+                role: action.role,
+                currentUser: action.currentUser
             }
         case LOGIN_IMPERSONATE_SUCCESS:
             return {
