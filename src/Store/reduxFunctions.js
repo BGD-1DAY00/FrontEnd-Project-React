@@ -5,8 +5,7 @@ import {
 	CREATE_USER_SUCCESS,
 	CREATE_USER_FAILED,
 	GET_USERLIST,
-    GET_QUIZ_LIST, 
-    CREATE_QUIZ
+    GET_QUIZ_LIST
 } from "./actions";
 
 
@@ -76,7 +75,7 @@ export function initiateCreateQuiz(quiz) {
     return async function sideEffect(dispatch) {
         // dispatch({type: CREATE_QUIZ})
         try {
-            const response = await fetch("http://localhost:8080/createQuiz", {
+            await fetch("http://localhost:8080/createQuiz", {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json', // willing to accept
@@ -148,6 +147,35 @@ export function editUser(userObj, username) {
 				console.log("delete not successful")
 			}
 			dispatch(getUserList())
+		} catch(e) {
+			console.log(e)
+		}
+	}
+
+}
+
+export function editQuiz(quizObj, quizQuestion, applicant) {
+
+	// new object
+	// the username for the user to update
+	return async function sideEffect(dispatch) {
+		try {
+			const response = await fetch(`http://localhost:8080/editQuiz/${quizQuestion}&${applicant}`, {
+				method: 'PUT',
+				headers: {
+					'Accept': 'application/json', // willing to accept
+					'Content-Type': 'application/json', //defining what we are sending
+					"Access-Control-Allow-Origin" : "*"
+				},
+				body: JSON.stringify(quizObj)
+			})
+			console.log(await response)
+			if (response.ok)
+				console.log("update successful")
+			else {
+				console.log("update not successful")
+			}
+			dispatch(getQuizList())
 		} catch(e) {
 			console.log(e)
 		}

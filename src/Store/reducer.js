@@ -1,5 +1,14 @@
 
-import {CREATE_USER_FAILED, CREATE_USER_SUCCESS, GET_QUIZ_LIST, GET_USERLIST, LOGIN_SUCCESS, CREATE_QUIZ, EDITING} from "./actions";
+import {
+    CREATE_USER_FAILED,
+    CREATE_USER_SUCCESS,
+    GET_QUIZ_LIST,
+    GET_USERLIST,
+    LOGIN_SUCCESS,
+    CREATE_QUIZ,
+    EDITING,
+    QUIZ_EDITING
+} from "./actions";
 
 
 
@@ -73,6 +82,8 @@ export function user(state = initUser, action) {
 
 const initQuiz = {
     quizList: [],
+    quizEditing: false,
+    selectedQuiz: null
 }
 
 export function quiz(state = initQuiz, action) {
@@ -86,6 +97,12 @@ export function quiz(state = initQuiz, action) {
             return{
                 ...state,
                 quizList: [...state.quizList, action.quiz]
+            }
+        case QUIZ_EDITING:
+            return {
+                ...state,
+                quizEditing: true,
+                selectedQuiz: action.selectedQuiz
             }
         default:
             return {

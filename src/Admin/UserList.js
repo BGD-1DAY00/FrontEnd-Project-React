@@ -9,6 +9,7 @@ export function UserList() {
 
     useEffect(() => {
         dispatch(getUserList())
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
