@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {QUIZ_EDITING} from "../Store/actions";
-import {getQuizList} from "../Store/reduxFunctions";
+import {deletingQuiz, getQuizList} from "../Store/reduxFunctions";
 import {useEffect} from "react";
 
 export function Quiz({quizData}) {
@@ -16,6 +16,11 @@ export function Quiz({quizData}) {
         dispatch({type: QUIZ_EDITING, selectedQuiz: selectedQuiz})
 
     }
+
+    function deleteQuiz(e) {
+        const selectedQuiz = quizList.filter(s => s.id === quizData.id)
+        dispatch(deletingQuiz(selectedQuiz[0].id))
+    }
     return <div className={"quiz"}>
 
         <span>{quizData.quizQuestion}</span>
@@ -27,6 +32,7 @@ export function Quiz({quizData}) {
 
         <br/>
         <button onClick={(e) => {editQuiz(e)}}>Edit</button>
+        <button onClick={(e) => {deleteQuiz(e)}}>Delete</button>
         {/*<button className={'message_btn2'}*/}
         {/*        onClick={() => dispatch({type: ON_QUIZ_DELETE, props})}>*/}
         {/*    Delete*/}

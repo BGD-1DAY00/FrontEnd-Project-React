@@ -182,3 +182,24 @@ export function editQuiz(quizObj, id) {
 	}
 
 }
+export function deletingQuiz(id) {
+	return async function sideEffect(dispatch) {
+		try {
+			const response = await fetch(`http://localhost:8080/deleteQuiz/${id}`, {
+				method: 'DELETE',
+				headers: {
+					"Access-Control-Allow-Origin" : "*"
+				}
+			})
+			if (response.ok)
+				console.log("delete successful")
+			else {
+				console.log("delete not successful")
+
+			}
+			dispatch(getQuizList())
+		} catch(e) {
+			console.log(e)
+		}
+	}
+}
