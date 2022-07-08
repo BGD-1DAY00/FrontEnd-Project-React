@@ -7,7 +7,11 @@ import {
     LOGIN_SUCCESS,
     CREATE_QUIZ,
     EDITING,
+
+    QUIZ_EDITING, STOP_QUIZ_EDITING,
+
     IMPERSONATING, LOGIN_IMPERSONATE_SUCCESS, LOGIN_IMPERSONATE_FAILURE, ADMIN_IMPERSONATE_SUCCESS, EDIT_SUCCESS
+
 } from "./actions";
 
 
@@ -113,6 +117,8 @@ export function user(state = initUser, action) {
 
 const initQuiz = {
     quizList: [],
+    quizEditing: false,
+    selectedQuiz: null
 }
 
 export function quiz(state = initQuiz, action) {
@@ -126,6 +132,18 @@ export function quiz(state = initQuiz, action) {
             return{
                 ...state,
                 quizList: [...state.quizList, action.quiz]
+            }
+        case QUIZ_EDITING:
+            return {
+                ...state,
+                quizEditing: true,
+                selectedQuiz: action.selectedQuiz
+            }
+        case STOP_QUIZ_EDITING:
+            return {
+                ...state,
+                quizEditing: false,
+                selectedQuiz: null
             }
         default:
             return {

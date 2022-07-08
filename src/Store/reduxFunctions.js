@@ -5,8 +5,12 @@ import {
 	CREATE_USER_SUCCESS,
 	CREATE_USER_FAILED,
 	GET_USERLIST,
-	GET_QUIZ_LIST,
+
+	GET_QUIZ_LIST, STOP_QUIZ_EDITING,
+
+
 	CREATE_QUIZ, LOGIN_IMPERSONATE_FAILURE, LOGIN_IMPERSONATE_SUCCESS, ADMIN_IMPERSONATE_SUCCESS, EDIT_SUCCESS
+
 } from "./actions";
 
 
@@ -44,7 +48,6 @@ export function getUserList() {
 		try {
 			const response = await fetch("http://localhost:8080/getUserList")
 			const data = await response.json();
-			console.log(data);
 			dispatch({type: GET_USERLIST, userList: data})
 		} catch (e) {
 		}
@@ -76,7 +79,7 @@ export function initiateCreateQuiz(quiz) {
     return async function sideEffect(dispatch) {
         // dispatch({type: CREATE_QUIZ})
         try {
-            const response = await fetch("http://localhost:8080/createQuiz", {
+            await fetch("http://localhost:8080/createQuiz", {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json', // willing to accept
@@ -94,7 +97,6 @@ export function getQuizList(){
         try{
             const response = await fetch("http://localhost:8080/getQuizList")
             const data = await response.json();
-            console.log("incoming list" + data);
             dispatch({type: GET_QUIZ_LIST, quizList: data})
         }catch(e){
         }
@@ -157,6 +159,59 @@ export function editUser(userObj, username) {
 
 }
 
+
+export function editQuiz(quizObj, id) {
+
+	// new object
+	// the username for the user to update
+	return async function sideEffect(dispatch) {
+		try {
+			const response = await fetch(`http://localhost:8080/editQuiz/${id}`, {
+				method: 'PUT',
+				headers: {
+					'Accept': 'application/json', // willing to accept
+					'Content-Type': 'application/json', //defining what we are sending
+					"Access-Control-Allow-Origin" : "*"
+				},
+				body: JSON.stringify(quizObj)
+			})
+			console.log(await response.json())
+			if (response.ok)
+				console.log("update successful")
+			else {
+				console.log("update not successful")
+			}
+			dispatch(getQuizList())
+			dispatch({type: STOP_QUIZ_EDITING})
+
+		} catch(e) {
+			console.log(e)
+		}
+	}
+
+}
+export function deletingQuiz(id) {
+	return async function sideEffect(dispatch) {
+		try {
+			const response = await fetch(`http://localhost:8080/deleteQuiz/${id}`, {
+				method: 'DELETE',
+				headers: {
+					"Access-Control-Allow-Origin" : "*"
+				}
+			})
+			if (response.ok)
+				console.log("delete successful")
+			else {
+				console.log("delete not successful")
+
+			}
+			dispatch(getQuizList())
+		} catch(e) {
+			console.log(e)
+		}
+	}
+}
+
 export function impersonateUser(username, role) {
 	return async function sideEffect(dispatch) {
 		try {
@@ -175,3 +230,4 @@ export function impersonateUser(username, role) {
 		}
 	}
 }
+

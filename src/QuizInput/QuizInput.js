@@ -4,37 +4,55 @@
 // Input - Question? (title like)
 // Buttons - Create quiz/template
 
-import {getQuizList, getUserList, initiateCreateQuiz} from "../Store/reduxFunctions";
+import {editQuiz, getQuizList, getUserList, initiateCreateQuiz} from "../Store/reduxFunctions";
 import {useDispatch, useSelector} from "react-redux";
 import {useState, useEffect} from "react";
 
-export function QuizInput(props) {
+export function QuizInput() {
 
-    const {
-        newQuiz = {
+    let newQuiz = {
             quizQuestion: "",
             grade: "",
             finished: false,
             applicant: ""
         }
-    } = props
 
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getUserList())
     }, [])
-    let userList = useSelector(state => state.user.userList)
+
+    let {userList, quizEditing, selectedQuiz} = useSelector(state => ({
+        userList: state.user.userList,
+        quizEditing: state.quiz.quizEditing,
+        selectedQuiz: state.quiz.selectedQuiz
+    }) )
+
 
     const [formState, setFormState] = useState(newQuiz)
+    useEffect(() => {
+        if (selectedQuiz) {
+            setFormState(selectedQuiz[0])
+        } else {
+            setFormState(newQuiz)
+        }
+    }, [selectedQuiz])
 
     function onFormSubmit(e) {
         e.preventDefault()
         //dispatch
         // dispatch(initiateCreateQuiz(formState.quizQuestion, formState.applicant, formState.finished, formState.grade))
-        dispatch(initiateCreateQuiz(formState))
+        if(!quizEditing) {
+            dispatch(initiateCreateQuiz(formState))
+        }
+        else {
+            dispatch(editQuiz(formState, selectedQuiz[0].id))
+        }
         dispatch(getQuizList())
+        setFormState(newQuiz)
     }
+
 
     function onQuestionChange(e) {
         setFormState({

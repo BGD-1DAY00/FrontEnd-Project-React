@@ -1,10 +1,26 @@
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {QUIZ_EDITING} from "../Store/actions";
+import {deletingQuiz, getQuizList} from "../Store/reduxFunctions";
+import {useEffect} from "react";
 
 export function Quiz({quizData}) {
-
     const dispatch = useDispatch();
+    const quizList = useSelector(state => state.quiz.quizList)
 
-    console.log(quizData.quizQuestion)
+    useEffect(() => {
+        dispatch(getQuizList())
+    }, [])
+
+    function editQuiz(e) {
+        const selectedQuiz = quizList.filter(s => s.quizQuestion === quizData.quizQuestion && s.applicant === quizData.applicant)
+        dispatch({type: QUIZ_EDITING, selectedQuiz: selectedQuiz})
+
+    }
+
+    function deleteQuiz(e) {
+        const selectedQuiz = quizList.filter(s => s.id === quizData.id)
+        dispatch(deletingQuiz(selectedQuiz[0].id))
+    }
     return <div className={"quiz"}>
 
         <span>{quizData.quizQuestion}</span>
@@ -15,10 +31,8 @@ export function Quiz({quizData}) {
         {/*not sure this needs to be here*/}
 
         <br/>
-        {/*<button className={'message_btn'}*/}
-        {/*        onClick={() => dispatch({type: ON_QUIZ_SELECT_TO_EDIT, quiz: props})}>*/}
-        {/*    Edit*/}
-        {/*</button>*/}
+        <button onClick={(e) => {editQuiz(e)}}>Edit</button>
+        <button onClick={(e) => {deleteQuiz(e)}}>Delete</button>
         {/*<button className={'message_btn2'}*/}
         {/*        onClick={() => dispatch({type: ON_QUIZ_DELETE, props})}>*/}
         {/*    Delete*/}
@@ -27,3 +41,4 @@ export function Quiz({quizData}) {
     </div>
 
 }
+
