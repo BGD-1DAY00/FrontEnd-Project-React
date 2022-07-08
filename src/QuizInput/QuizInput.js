@@ -4,40 +4,42 @@
 // Input - Question? (title like)
 // Buttons - Create quiz/template
 
-import {getUserList, getUserlist} from "../Store/reduxFunctions";
+import {getQuizList, getUserList, initiateCreateQuiz} from "../Store/reduxFunctions";
 import {useDispatch, useSelector} from "react-redux";
 import {useState, useEffect} from "react";
 
 export function QuizInput(props) {
 
-    const {newQuiz = {
-        question: "",
-        grade: "",
-        finished: false,
-        applicant: ""
-    }} = props
+    const {
+        newQuiz = {
+            quizQuestion: "",
+            grade: "",
+            finished: false,
+            applicant: ""
+        }
+    } = props
 
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getUserList())
     }, [])
-
-
-     let userList = useSelector(state => state.user.userList)
+    let userList = useSelector(state => state.user.userList)
 
     const [formState, setFormState] = useState(newQuiz)
 
-    console.log(userList);  // this is working
     function onFormSubmit(e) {
         e.preventDefault()
         //dispatch
+        // dispatch(initiateCreateQuiz(formState.quizQuestion, formState.applicant, formState.finished, formState.grade))
+        dispatch(initiateCreateQuiz(formState))
+        dispatch(getQuizList())
     }
 
     function onQuestionChange(e) {
         setFormState({
             ...formState,
-            question: e.target.value
+            quizQuestion: e.target.value
         })
     }
 
@@ -66,7 +68,7 @@ export function QuizInput(props) {
         <form onSubmit={onFormSubmit}>
             <label>
                 Question:
-                <input onChange={onQuestionChange} value={formState.question} type={'text'} placeholder={"Question"}/>
+                <input onChange={onQuestionChange} value={formState.quizQuestion} type={'text'} placeholder={"Question"}/>
             </label>
             <label>
                 Grade:
@@ -81,12 +83,12 @@ export function QuizInput(props) {
             <label>
                 Applicant:
                 <select onChange={onApplicantChange} defaultValue={"Applicant"}>
-                <option key={"applicant"} value={"applicant"} disabled>
-                    Applicant
-                </option>
+                    <option key={"applicant"} value={"Applicant"} disabled>
+                        Applicant
+                    </option>
                     {
                         userList.map((user, idx) => {
-                            if(user.applicant) {
+                            if (user.applicant) {
                                 return <option key={"quizInput" + idx} value={user.username}>
                                     {user.username}
                                 </option>

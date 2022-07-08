@@ -4,7 +4,9 @@ import {
 	LOGIN_FAIL,
 	CREATE_USER_SUCCESS,
 	CREATE_USER_FAILED,
-	GET_USERLIST
+	GET_USERLIST,
+    GET_QUIZ_LIST, 
+    CREATE_QUIZ
 } from "./actions";
 
 
@@ -49,7 +51,6 @@ export function getUserList() {
 	}
 }
 
-
 export function createUser(cred) {
 	return async function sideEffect(dispatch) {
 		console.log(cred)
@@ -67,10 +68,37 @@ export function createUser(cred) {
 				dispatch({type: CREATE_USER_SUCCESS})
 			else
 				dispatch({type: CREATE_USER_FAILED})
-		} catch (e) {
-
-		}
+		} catch (e) {}
 	}
+}
+
+export function initiateCreateQuiz(quiz) {
+    return async function sideEffect(dispatch) {
+        // dispatch({type: CREATE_QUIZ})
+        try {
+            const response = await fetch("http://localhost:8080/createQuiz", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json', // willing to accept
+                    'Content-Type': 'application/json' //defining what we are sending
+                },
+                body: JSON.stringify(quiz)
+            })
+        } catch (e) {console.log(e)}
+    }
+}
+
+
+export function getQuizList(){
+    return async function sideEffect(dispatch, getState){
+        try{
+            const response = await fetch("http://localhost:8080/getQuizList")
+            const data = await response.json();
+            console.log("incoming list" + data);
+            dispatch({type: GET_QUIZ_LIST, quizList: data})
+        }catch(e){
+        }
+    }
 
 }
 
@@ -124,4 +152,5 @@ export function editUser(userObj, username) {
 			console.log(e)
 		}
 	}
+
 }

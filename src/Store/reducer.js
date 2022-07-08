@@ -1,4 +1,7 @@
-import {CREATE_USER_FAILED, CREATE_USER_SUCCESS, LOGIN_SUCCESS, GET_USERLIST, EDITING} from "./actions";
+
+import {CREATE_USER_FAILED, CREATE_USER_SUCCESS, GET_QUIZ_LIST, GET_USERLIST, LOGIN_SUCCESS, CREATE_QUIZ, EDITING} from "./actions";
+
+
 
 const initLogin = {
     role: null,
@@ -60,6 +63,29 @@ export function user(state = initUser, action) {
             return {
                 ...state,
                 userList: action.userList
+            }
+        default:
+            return {
+                ...state
+            }
+    }
+}
+
+const initQuiz = {
+    quizList: [],
+}
+
+export function quiz(state = initQuiz, action) {
+    switch(action.type) {
+        case GET_QUIZ_LIST:
+            return {
+                ...state,
+                quizList: action.quizList
+            }
+        case CREATE_QUIZ:
+            return{
+                ...state,
+                quizList: [...state.quizList, action.quiz]
             }
         default:
             return {
