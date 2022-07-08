@@ -1,4 +1,4 @@
-import {CREATE_USER_FAILED, CREATE_USER_SUCCESS, LOGIN_SUCCESS, GET_USERLIST} from "./actions";
+import {CREATE_USER_FAILED, CREATE_USER_SUCCESS, LOGIN_SUCCESS, GET_USERLIST, EDITING} from "./actions";
 
 const initLogin = {
     role: null,
@@ -20,7 +20,9 @@ export function login(state = initLogin, action){
 }
 
 const initCreateUser = {
-    createUserMessage: ''
+    createUserMessage: '',
+    editing: null,
+    selectedUser: null
 }
 
 export function admin(state = initCreateUser, action) {
@@ -34,6 +36,12 @@ export function admin(state = initCreateUser, action) {
             return {
                 ...state,
                 createUserMessage: 'User already exists'
+            }
+        case EDITING:
+            return {
+                ...state,
+                editing: true,
+                selectedUser: action.selectedUser
             }
         default:
             return{
