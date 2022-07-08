@@ -8,15 +8,16 @@ import {editQuiz, editUser, getQuizList, getUserList, initiateCreateQuiz} from "
 import {useDispatch, useSelector} from "react-redux";
 import {useState, useEffect} from "react";
 
-export function QuizInput() {
+export function QuizInput(props) {
 
-    let newQuiz = {
+    const {
+        newQuiz = {
             quizQuestion: "",
             grade: "",
             finished: false,
             applicant: ""
         }
-
+    } = props
 
     const dispatch = useDispatch()
 
@@ -29,9 +30,6 @@ export function QuizInput() {
         selectedQuiz: state.quiz.selectedQuiz
     }) )
 
-    if (selectedQuiz) {
-        newQuiz = selectedQuiz
-    }
     const [formState, setFormState] = useState(newQuiz)
 
     function onFormSubmit(e) {
