@@ -17,7 +17,6 @@ export function QuizList() {
 
 
     const quizList = useSelector(state => state.quiz.quizList)
-    console.log(quizList)
 
     const ungradedQuizList = quizList.filter(quiz => quiz.finished === false)
     const gradedQuizList = quizList.filter(quiz => quiz.finished === true)

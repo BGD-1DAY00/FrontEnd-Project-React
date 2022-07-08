@@ -43,7 +43,6 @@ export function getUserList() {
 		try {
 			const response = await fetch("http://localhost:8080/getUserList")
 			const data = await response.json();
-			console.log(data);
 			dispatch({type: GET_USERLIST, userList: data})
 		} catch (e) {
 		}
@@ -93,7 +92,6 @@ export function getQuizList(){
         try{
             const response = await fetch("http://localhost:8080/getQuizList")
             const data = await response.json();
-            console.log("incoming list" + data);
             dispatch({type: GET_QUIZ_LIST, quizList: data})
         }catch(e){
         }

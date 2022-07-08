@@ -8,32 +8,34 @@ import {editQuiz, editUser, getQuizList, getUserList, initiateCreateQuiz} from "
 import {useDispatch, useSelector} from "react-redux";
 import {useState, useEffect} from "react";
 
-export function QuizInput(props) {
+export function QuizInput() {
 
-    const {
-        newQuiz = {
+    let newQuiz = {
             quizQuestion: "",
             grade: "",
             finished: false,
             applicant: ""
         }
-    } = props
 
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getUserList())
     }, [])
+
     let {userList, quizEditing, selectedQuiz} = useSelector(state => ({
         userList: state.user.userList,
         quizEditing: state.quiz.quizEditing,
         selectedQuiz: state.quiz.selectedQuiz
     }) )
 
-    const currentQuiz = selectedQuiz  ? selectedQuiz: newQuiz
-    console.log("currQuiz" + JSON.stringify(currentQuiz))
-    const [formState, setFormState] = useState({...currentQuiz})
-    console.log("formState" + JSON.stringify(formState))
+
+    const [formState, setFormState] = useState(newQuiz)
+    useEffect(() => {
+        if (selectedQuiz) {
+            setFormState(selectedQuiz[0])
+        }
+    }, [selectedQuiz])
 
     function onFormSubmit(e) {
         e.preventDefault()

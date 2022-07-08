@@ -11,12 +11,8 @@ export function Quiz({quizData}) {
         dispatch(getQuizList())
     }, [])
 
-
-    console.log(quizData.quizQuestion)
-
     function editQuiz(e) {
         const selectedQuiz = quizList.filter(s => s.quizQuestion === quizData.quizQuestion && s.applicant === quizData.applicant)
-        console.log("selected quiz" + JSON.stringify(selectedQuiz))
         dispatch({type: QUIZ_EDITING, selectedQuiz: selectedQuiz})
 
     }
