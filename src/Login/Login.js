@@ -29,7 +29,7 @@ export function Login(){
         <>
             <form onSubmit={addUser}>
                 <label>Username:
-                <input onChange={addUsername} value={username} placeholder="username" type='text' />
+                <input required onChange={addUsername} value={username} placeholder="username" type='text' />
                 </label>
 
                 <label>Password:

@@ -8,7 +8,10 @@ export function UserList() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getUserList())
+        const interval = setInterval(() => {
+            dispatch(getUserList());
+        }, 1000);
+        return () => clearInterval(interval);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

@@ -41,6 +41,9 @@ export function QuizInput() {
 
     function onFormSubmit(e) {
         e.preventDefault()
+        if(formState.quizQuestion === "") {
+            return
+        }
         //dispatch
         // dispatch(initiateCreateQuiz(formState.quizQuestion, formState.applicant, formState.finished, formState.grade))
         if(!quizEditing) {
@@ -86,7 +89,7 @@ export function QuizInput() {
         <form onSubmit={onFormSubmit}>
             <label>
                 Question:
-                <input onChange={onQuestionChange} value={formState.quizQuestion} type={'text'} placeholder={"Question"}/>
+                <input required onChange={onQuestionChange} value={formState.quizQuestion} type={'text'} placeholder={"Question"}/>
             </label>
             <label>
                 Grade:

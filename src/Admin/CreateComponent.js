@@ -126,11 +126,17 @@ export function CreateComponent() {
     }
     function addUser(e) {
         e.preventDefault()
+        if(formState.username === "") {
+            return
+        }
         dispatch(createUser({formState: formState, token: token}))
     }
 
     function onEditSubmit(e){
         e.preventDefault()
+        if(editState.username === "") {
+            return
+        }
         dispatch(editUser(editState, selectedUser[0].username))
     }
 
@@ -148,7 +154,7 @@ export function CreateComponent() {
             <h2>Impersonate</h2>
             <form onSubmit={onImpSubmit}>
                 <label>Username:
-                    <input value={selectedUser[0].username} type='text' disabled={true}/>
+                    <input required value={selectedUser[0].username} type='text' disabled={true}/>
                 </label>
                 <label>Password:
                     <input value={selectedUser[0].password} type='text' disabled={true}/>
