@@ -7,7 +7,7 @@ import {
     LOGIN_SUCCESS,
     CREATE_QUIZ,
     EDITING,
-    QUIZ_EDITING
+    QUIZ_EDITING, STOP_QUIZ_EDITING
 } from "./actions";
 
 
@@ -103,6 +103,12 @@ export function quiz(state = initQuiz, action) {
                 ...state,
                 quizEditing: true,
                 selectedQuiz: action.selectedQuiz
+            }
+        case STOP_QUIZ_EDITING:
+            return {
+                ...state,
+                quizEditing: false,
+                selectedQuiz: null
             }
         default:
             return {

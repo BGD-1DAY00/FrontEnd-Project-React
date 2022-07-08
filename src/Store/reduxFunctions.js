@@ -5,7 +5,7 @@ import {
 	CREATE_USER_SUCCESS,
 	CREATE_USER_FAILED,
 	GET_USERLIST,
-    GET_QUIZ_LIST
+	GET_QUIZ_LIST, STOP_QUIZ_EDITING
 } from "./actions";
 
 
@@ -152,13 +152,13 @@ export function editUser(userObj, username) {
 
 }
 
-export function editQuiz(quizObj, quizQuestion, applicant) {
+export function editQuiz(quizObj, id) {
 
 	// new object
 	// the username for the user to update
 	return async function sideEffect(dispatch) {
 		try {
-			const response = await fetch(`http://localhost:8080/editQuiz/${quizQuestion}&${applicant}`, {
+			const response = await fetch(`http://localhost:8080/editQuiz/${id}`, {
 				method: 'PUT',
 				headers: {
 					'Accept': 'application/json', // willing to accept
@@ -167,13 +167,15 @@ export function editQuiz(quizObj, quizQuestion, applicant) {
 				},
 				body: JSON.stringify(quizObj)
 			})
-			console.log(await response)
+			console.log(await response.json())
 			if (response.ok)
 				console.log("update successful")
 			else {
 				console.log("update not successful")
 			}
 			dispatch(getQuizList())
+			dispatch({type: STOP_QUIZ_EDITING})
+
 		} catch(e) {
 			console.log(e)
 		}
