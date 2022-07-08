@@ -18,6 +18,7 @@ export function Quiz({quizData}) {
         const selectedQuiz = quizList.filter(s => s.quizQuestion === quizData.quizQuestion && s.applicant === quizData.applicant)
         console.log("selected quiz" + JSON.stringify(selectedQuiz))
         dispatch({type: QUIZ_EDITING, selectedQuiz: selectedQuiz})
+
     }
     return <div className={"quiz"}>
 

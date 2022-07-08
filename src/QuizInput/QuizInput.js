@@ -30,7 +30,10 @@ export function QuizInput(props) {
         selectedQuiz: state.quiz.selectedQuiz
     }) )
 
-    const [formState, setFormState] = useState(newQuiz)
+    const currentQuiz = selectedQuiz  ? selectedQuiz: newQuiz
+    console.log("currQuiz" + JSON.stringify(currentQuiz))
+    const [formState, setFormState] = useState({...currentQuiz})
+    console.log("formState" + JSON.stringify(formState))
 
     function onFormSubmit(e) {
         e.preventDefault()

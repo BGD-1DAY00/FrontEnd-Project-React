@@ -15,7 +15,7 @@ export function Recruiter(){
     const selectedQuiz = useSelector(state => state.quiz.selectedQuiz)
 
     if(selectedQuiz){
-        return <QuizInput newQuiz={selectedQuiz}/>
+        return <QuizInput />
     }
     return <>
         <QuizInput/>
