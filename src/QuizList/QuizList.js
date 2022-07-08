@@ -22,7 +22,7 @@ export function QuizList() {
     const gradedQuizList = quizList.filter(quiz => quiz.finished === true)
 
     return <>
-        <div className={"hdr1"}><h1>Ungraded Quizzes</h1></div>
+        <div className={"hdr1"}><h1>Unfinished Quizzes</h1></div>
         <div className={'ungraded'}>
 
             {
@@ -35,7 +35,7 @@ export function QuizList() {
                 })
             }
         </div>
-        <div className={"hdr2"}><h1>Graded Quizzes</h1></div>
+        <div className={"hdr2"}><h1>Finished Quizzes</h1></div>
         <div className={'graded'}>
             {
                 gradedQuizList.map((quizData, idx) => {
