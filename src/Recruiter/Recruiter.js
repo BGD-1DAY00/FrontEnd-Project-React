@@ -19,7 +19,7 @@ export function Recruiter(){
         <QuizInput/>
         <QuizList/>
         <br/>
-        <h2>Quizzes by Applicant</h2>
+
         <br/>
         <ApplicantQuizList/>
     </>
