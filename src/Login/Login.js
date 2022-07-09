@@ -2,6 +2,7 @@ import {useState} from "react";
 import {useDispatch} from 'react-redux';
 import {initiateLogin} from "../Store/reduxFunctions";
 import {Button, Card, Form} from "react-bootstrap";
+import CardHeader from "react-bootstrap/CardHeader";
 
 export function Login(){
 
@@ -28,7 +29,8 @@ export function Login(){
 //added admin branch
     return(
         <>
-            <Card className=  {'w-50 text-center'} >
+            <Card className=  {'w-50 text-center m-auto'} >
+                <CardHeader className={'fs-2'}>Welcome to our Website!</CardHeader>
             <Form className={'p-3'} onSubmit={addUser}>
                 <Form.Group>
                 <Form.Label >Username:</Form.Label>
@@ -44,8 +46,9 @@ export function Login(){
                 <input type="radio" onChange={handleRole} name="role" value="recruiter" /> Recruiter
                 <input type="radio" onChange={handleRole} name="role" value="admin" />  Admin
                 <br/>
-
+                <Card.Footer>
                 <Button  type='submit'>Submit</Button>
+                </Card.Footer>
             </Form>
             </Card>
         </>
