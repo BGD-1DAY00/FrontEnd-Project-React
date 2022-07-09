@@ -39,7 +39,7 @@ export function QuizInput() {
         } else {
             setFormState(newQuiz)
         }
-    }, [selectedQuiz])
+    }, [selectedQuiz,])  // we may want to think about adding a dependency for the dropdown (user.username) changing. This may fix our bug.
 
     function onFormSubmit(e) {
         e.preventDefault()
