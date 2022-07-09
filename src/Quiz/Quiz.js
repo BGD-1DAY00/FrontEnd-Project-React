@@ -30,7 +30,7 @@ export function Quiz({quizData}) {
         {/*might have to change this - its reading as function*/}
         <span> Quiz Grade: {quizData.grade}</span>
         {/*<span>{quizData.applicant}</span>*/}
-        <span>Completed: {quizData.finished}</span>
+        <span> {quizData.finished}</span>
         {/*not sure this needs to be here*/}
         <div>
         <span className={'ml-2'}><Button onClick={(e) => {editQuiz(e)}}
