@@ -55,6 +55,8 @@ export function ApplicantQuizList () {
                 </select>
             </Dropdown>
 
+
+
             <h2>Quizzes Assigned</h2>
 
             {filteredList.filter(s =>s.finished === false).map((s)=>{
@@ -70,7 +72,9 @@ export function ApplicantQuizList () {
                 {/*    <div style={{margin: '1rem', display:'inline'}}>{s.quizQuestion}</div>*/}
                 {/*</div>*/}
             })}
-            <h2>Completed Quizzes</h2>
+
+
+                <h2>Completed Quizzes</h2>
             {filteredList.filter(s =>s.finished === true ).map((s)=>{
                 return <>
                 <Card className={'d-flex float-start w-25 p-2 m-1 bg-secondary text-white'} border={'secondary'} >
@@ -81,6 +85,7 @@ export function ApplicantQuizList () {
                 </Card>
                 </>
             })}
+
             </Card>
         </>
 
