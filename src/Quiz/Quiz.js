@@ -2,6 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {QUIZ_EDITING} from "../Store/actions";
 import {deletingQuiz, getQuizList} from "../Store/reduxFunctions";
 import {useEffect} from "react";
+import {Button, Card} from "react-bootstrap";
 
 export function Quiz({quizData}) {
     const dispatch = useDispatch();
@@ -21,24 +22,29 @@ export function Quiz({quizData}) {
         const selectedQuiz = quizList.filter(s => s.id === quizData.id)
         dispatch(deletingQuiz(selectedQuiz[0].id))
     }
-    return <div className={"quiz"}>
+    return <>
 
-        <span>{quizData.quizQuestion}</span>
+        <Card className={'d-flex float-start w-25 p-2 m-1'} border={'secondary'} >
+        Quiz for: {quizData.applicant}
+            <span> Quiz Question:  {quizData.quizQuestion} </span>
         {/*might have to change this - its reading as function*/}
         <span>{quizData.grade}</span>
-        <span>{quizData.applicant}</span>
+        {/*<span>{quizData.applicant}</span>*/}
         <span>{quizData.finished}</span>
         {/*not sure this needs to be here*/}
+        <div>
+        <span className={'ml-2'}><Button onClick={(e) => {editQuiz(e)}}
+                className={'m-2 bg-secondary text-white'}
+                size={'sm'}
+        >Edit</Button></span>
+        <span className={'ml-2'}><Button
+            className={'m-2 bg-secondary text-white'}
+            size={'sm'}
+            onClick={(e) => {deleteQuiz(e)}}
+        >Delete</Button></span>
+        </div>
+        </Card>
 
-        <br/>
-        <button onClick={(e) => {editQuiz(e)}}>Edit</button>
-        <button onClick={(e) => {deleteQuiz(e)}}>Delete</button>
-        {/*<button className={'message_btn2'}*/}
-        {/*        onClick={() => dispatch({type: ON_QUIZ_DELETE, props})}>*/}
-        {/*    Delete*/}
-        {/*</button>*/}
-
-    </div>
-
+        </>
 }
 
