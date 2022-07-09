@@ -1,6 +1,7 @@
 import {useEffect} from "react";
 import {findSpecificUser, getQuizList, getUserList} from "../Store/reduxFunctions";
 import {useDispatch, useSelector} from "react-redux";
+import {GO_HOME} from "../Store/actions";
 
 export function Applicant(){
 
@@ -20,7 +21,9 @@ const dispatch =useDispatch()
 
     return(
         <>
-            <h2>Quiz to take</h2>
+            <div>
+                <h2>Quiz to take</h2>
+            </div>
 
             {filteredList.filter(s =>s.finished === false).map((s)=>{
                 return <div style={{marginBottom: '1rem'}}>

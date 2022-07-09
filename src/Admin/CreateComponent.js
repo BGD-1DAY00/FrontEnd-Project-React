@@ -1,8 +1,10 @@
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {createUser, editUser, impersonateUser} from "../Store/reduxFunctions";
+import {createUser, editUser, getUserList, impersonateUser} from "../Store/reduxFunctions";
 import {Button, Card, Form} from "react-bootstrap";
 import CardHeader from "react-bootstrap/CardHeader";
+import {UserList} from "./UserList";
+import {SELECT_DEFAULT} from "../Store/actions";
 
 export function CreateComponent() {
 
@@ -140,6 +142,8 @@ export function CreateComponent() {
             return
         }
         dispatch(editUser(editState, selectedUser[0].username))
+        setEditState(newUser)
+        dispatch({type: SELECT_DEFAULT, select: true})
     }
 
     function handleRole(e){
@@ -149,6 +153,7 @@ export function CreateComponent() {
     function onImpSubmit(e) {
         e.preventDefault();
         dispatch(impersonateUser(selectedUser[0].username, impState))
+        dispatch({type: SELECT_DEFAULT, select: true})
     }
 
     if (impersonating) {
@@ -179,6 +184,8 @@ export function CreateComponent() {
                 </Card.Footer>
 
             </Card>
+
+
         </>
     }
 
@@ -209,6 +216,8 @@ if (editing) {
 
         </Form>
         </Card>
+
+
     </>
 }
     return (
@@ -241,5 +250,6 @@ if (editing) {
             <Card.Footer>
                 {createUserMessage && <div><font color="red">{createUserMessage}</font></div>}
             </Card.Footer>
+
         </Card> )
 }

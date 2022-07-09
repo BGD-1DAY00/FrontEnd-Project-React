@@ -4,6 +4,7 @@ import {getQuizList} from "../Store/reduxFunctions";
 import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 import {ApplicantQuizList} from "../ApplicantQuizList/ApplicantQuizList";
+import {GO_HOME} from "../Store/actions";
 
 
 export function Recruiter(){
@@ -16,7 +17,9 @@ export function Recruiter(){
     //recruiter folder
 
     return <>
-        <QuizInput/>
+
+            <QuizInput/>
+
         <QuizList/>
         <br/>
 

@@ -1,13 +1,13 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {deleteUser, getUserList} from "../Store/reduxFunctions";
 import {useDispatch, useSelector} from "react-redux";
-import {EDITING, IMPERSONATING} from "../Store/actions";
+import {EDITING, IMPERSONATING, SELECT_DEFAULT} from "../Store/actions";
 import {Button} from "react-bootstrap";
 
 export function UserList() {
 
     const dispatch = useDispatch()
-
+    const dropdown = useRef();
     useEffect(() => {
         const interval = setInterval(() => {
             dispatch(getUserList());
@@ -15,13 +15,14 @@ export function UserList() {
         return () => clearInterval(interval);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+    const optionSelected = useSelector(state=>state.admin.optionSelected)
+    const userList = useSelector(state => state.user.userList)
+    const [formState, setFormState] = useState()
 
-    let userList = useSelector(state => state.user.userList)
-    const [formState, setFormState] = useState({user: userList[0]})
-
-    console.log(userList)
-    console.log(userList[0])
-
+    if(optionSelected){
+        dropdown.current.value = "default"
+        dispatch({type: SELECT_DEFAULT, select: false})
+    }
     function onChangeUser(e) {
         setFormState({
             ...formState,
@@ -31,12 +32,14 @@ export function UserList() {
 
     function dlUser(e) {
         dispatch(deleteUser(formState))
+        dropdown.current.value = "default"
     }
 
     console.log(formState)
 
     function handleForm(e) {
         e.preventDefault();
+
     }
 
 
@@ -46,6 +49,7 @@ export function UserList() {
         } else {
             const selectedUser = userList.filter(s => s.username === formState.user)
             dispatch({type: EDITING, selectedUser: selectedUser})
+
         }
 }
 
@@ -54,7 +58,6 @@ export function UserList() {
             return;
         } else {
             const selectedUser = userList.filter(s => s.username === formState.user)
-            // console.log(selectedUser)
             dispatch({type: IMPERSONATING, selectedUser: selectedUser})
         }
     }
@@ -63,8 +66,8 @@ export function UserList() {
         <>
             <div><font color="#663399"><h2>User List</h2></font></div>
             <form onSubmit={handleForm}>
-                <select onChange={onChangeUser}>
-                    <option>Please select a user</option>
+                <select ref={dropdown}  onChange={onChangeUser} >
+                    <option value="default">Please select a user</option>
                     {userList.map((user, idx) => {
                             return <option key={idx} value={user.username}>
                                 {user.username}
@@ -83,8 +86,6 @@ export function UserList() {
                                                  variant={'danger'}
                 >Delete</Button></span>
                 <Button onClick={impersonateUser}>Impersonate</Button>
-
-                {/*{user && <h3>Please select a user</h3>}*/}
             </form>
         </>
     )

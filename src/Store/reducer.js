@@ -7,10 +7,17 @@ import {
     LOGIN_SUCCESS,
     CREATE_QUIZ,
     EDITING,
+    QUIZ_EDITING,
+    STOP_QUIZ_EDITING,
 
-    QUIZ_EDITING, STOP_QUIZ_EDITING,
-
-    IMPERSONATING, LOGIN_IMPERSONATE_SUCCESS, LOGIN_IMPERSONATE_FAILURE, ADMIN_IMPERSONATE_SUCCESS, EDIT_SUCCESS
+    IMPERSONATING,
+    LOGIN_IMPERSONATE_SUCCESS,
+    LOGIN_IMPERSONATE_FAILURE,
+    ADMIN_IMPERSONATE_SUCCESS,
+    EDIT_SUCCESS,
+    GO_HOME,
+    GO_TO_ADMIN,
+    SELECT_DEFAULT
 
 } from "./actions";
 
@@ -42,6 +49,16 @@ export function login(state = initLogin, action){
                 ...state,
                 impersonateFailure: true
             }
+        case GO_HOME:
+            return{
+                ...state,
+                role: null
+            }
+        // case GO_TO_ADMIN:
+        //     return{
+        //         ...state,
+        //         role: "admin"
+        //     }
         default:
             return{
                 ...state
@@ -54,6 +71,7 @@ const initCreateUser = {
     editing: null,
     impersonating: null,
     selectedUser: null,
+    optionSelected: null
 }
 
 export function admin(state = initCreateUser, action) {
@@ -77,7 +95,7 @@ export function admin(state = initCreateUser, action) {
         case EDIT_SUCCESS:
             return {
                 ...state,
-                editing: null,
+                editing: false,
                 selectedUser: null
             }
         case IMPERSONATING:
@@ -92,6 +110,10 @@ export function admin(state = initCreateUser, action) {
                 impersonating: null,
                 selectedUser: null
             }
+        case SELECT_DEFAULT:return{
+            ...state,
+            optionSelected: action.select
+        }
         default:
             return{
                 ...state
