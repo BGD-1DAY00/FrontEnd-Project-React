@@ -24,7 +24,7 @@ export function Quiz({quizData}) {
     }
     return <>
 
-        <Card className={'d-flex float-start w-25 p-2 m-1'} border={'secondary'} >
+        <Card className={'d-flex float-start w-25 p-2 m-1 bg-secondary text-white'} border={'secondary'} >
         Quiz for: {quizData.applicant}
             <span> Quiz Question:  {quizData.quizQuestion} </span>
         {/*might have to change this - its reading as function*/}
@@ -34,12 +34,14 @@ export function Quiz({quizData}) {
         {/*not sure this needs to be here*/}
         <div>
         <span className={'ml-2'}><Button onClick={(e) => {editQuiz(e)}}
-                className={'m-2 bg-secondary text-white'}
+                className={'m-2 text-white'}
                 size={'sm'}
+                variant={'warning'}
         >Edit</Button></span>
         <span className={'ml-2'}><Button
-            className={'m-2 bg-secondary text-white'}
+            className={'m-2  text-white'}
             size={'sm'}
+            variant={'danger'}
             onClick={(e) => {deleteQuiz(e)}}
         >Delete</Button></span>
         </div>

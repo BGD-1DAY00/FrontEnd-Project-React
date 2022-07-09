@@ -7,6 +7,8 @@
 import {editQuiz, getQuizList, getUserList, initiateCreateQuiz} from "../Store/reduxFunctions";
 import {useDispatch, useSelector} from "react-redux";
 import {useState, useEffect} from "react";
+import {Button, Card, Dropdown, FormControl, FormGroup, FormLabel} from "react-bootstrap";
+import CardHeader from "react-bootstrap/CardHeader";
 
 export function QuizInput() {
 
@@ -86,22 +88,23 @@ export function QuizInput() {
     }
 
     return<>
+        <Card className={'m-2 bg-secondary border-secondary row '}>
+            <CardHeader className={'h3 float-start text-white'}>Quiz Template</CardHeader>
+
         <form onSubmit={onFormSubmit}>
-            <label>
+
+            <FormGroup>
+            <FormLabel className={'text-secondary input-group-text'} >
                 Question:
-                <input required onChange={onQuestionChange} value={formState.quizQuestion} type={'text'} placeholder={"Question"}/>
-            </label>
-            <label>
-                Grade:
-                <input onChange={onGradeChange} value={formState.grade} type={'text'} placeholder={"Grade"}/>
-            </label>
+                <FormControl required onChange={onQuestionChange}
+                             value={formState.quizQuestion}
+                             type={'text'}
+                             // placeholder={"Question"}
 
-            <label>
-                Finished:
-                <input onChange={onFinishedChange} checked={formState.finished} type={'checkbox'}/>
-            </label>
-
-            <label>
+                />
+            </FormLabel>
+            </FormGroup>
+            <Dropdown className={'text-white'}>
                 Applicant:
                 <select onChange={onApplicantChange} defaultValue={"Applicant"}>
                     <option key={"applicant"} value={"Applicant"} disabled>
@@ -117,9 +120,28 @@ export function QuizInput() {
                         })
                     }
                 </select>
-            </label>
+            </Dropdown>
 
-            <button>Submit</button>
+            <FormGroup>
+                <FormLabel className={'mt-3 text-warning input-group-sm'}>
+                    Grade:
+                    <FormControl onChange={onGradeChange}
+                                 value={formState.grade}
+                                 type={'text'}
+                                 // placeholder={"Grade"}
+                    />
+                </FormLabel>
+            </FormGroup>
+
+            <FormGroup>
+                <FormLabel className={'text-warning'}>
+                    Finished:
+                    <input onChange={onFinishedChange} checked={formState.finished} type={'checkbox'} className={'m-1'}/>
+                </FormLabel>
+            </FormGroup>
+
+            <Button className={'m-1'} variant={'primary'}>Submit</Button>
         </form>
+        </Card>
     </>
 }

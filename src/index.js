@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
+
 //boilerplate for async redux; middleware magic
 const asyncMiddleware = storeAPI => next => action => {
     if (typeof action === 'function')
