@@ -28,9 +28,9 @@ export function Quiz({quizData}) {
         Quiz for: {quizData.applicant}
             <span> Quiz Question:  {quizData.quizQuestion} </span>
         {/*might have to change this - its reading as function*/}
-        <span>{quizData.grade}</span>
+        <span> Quiz Grade: {quizData.grade}</span>
         {/*<span>{quizData.applicant}</span>*/}
-        <span>{quizData.finished}</span>
+        <span>Completed: {quizData.finished}</span>
         {/*not sure this needs to be here*/}
         <div>
         <span className={'ml-2'}><Button onClick={(e) => {editQuiz(e)}}

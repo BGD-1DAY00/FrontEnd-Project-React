@@ -2,6 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {getQuizList, getUserList} from "../Store/reduxFunctions";
 import {useState} from "react";
+import {Card} from "react-bootstrap";
 
 
 export function ApplicantQuizList () {
@@ -33,6 +34,7 @@ export function ApplicantQuizList () {
     const filteredList = quizList.filter(s=>s.applicant === formState.applicant)
     return(
         <>
+            <Card>
             <label>
                 Applicant:
                 <select onChange={onApplicantChange} defaultValue={"Applicant"}>
@@ -64,6 +66,7 @@ export function ApplicantQuizList () {
                    Quiz: {s.quizQuestion} Grade: {s.grade} Finished: {s.finished? "finished" : "incomplete"}
                 </>
             })}
+            </Card>
         </>
 
     )
