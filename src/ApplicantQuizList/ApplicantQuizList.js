@@ -61,7 +61,7 @@ export function ApplicantQuizList () {
 
             {filteredList.filter(s =>s.finished === false).map((s)=>{
                 return <>
-                    <Card className={'d-flex float-start w-25 p-2 m-1 bg-secondary text-white'} border={'secondary'} >
+                    <Card style={{color:'seagreen', backgroundColor:'antiquewhite'}} className={'d-flex float-start w-25 p-2 m-1'} border={'secondary'} >
                         <span>Quiz: {s.quizQuestion}</span>
                         <span>Grade: {s.grade ?  s.grade : "not graded"}</span>
                         <span>Status: {s.finished? "completed" : "incomplete"}</span>
@@ -77,7 +77,7 @@ export function ApplicantQuizList () {
                 <h2>Completed Quizzes</h2>
             {filteredList.filter(s =>s.finished === true ).map((s)=>{
                 return <>
-                <Card className={'d-flex float-start w-25 p-2 m-1 bg-secondary text-white'} border={'secondary'} >
+                <Card style={{color:'seagreen', backgroundColor:'antiquewhite'}} className={'d-flex float-start w-25 p-2 m-1 '} border={'secondary'} >
                     <span>Quiz: {s.quizQuestion}</span>
                     <span>Grade: {s.grade ?  s.grade : "not graded"}</span>
                     <span>Status: {s.finished ? "completed" : "incomplete"}</span>

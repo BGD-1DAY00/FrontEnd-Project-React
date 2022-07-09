@@ -24,24 +24,27 @@ export function Quiz({quizData}) {
     }
     return <>
 
-        <Card className={'d-flex float-start w-25 p-2 m-1 bg-secondary text-white'} border={'secondary'} >
-        Quiz for: {quizData.applicant}
-            <span> Quiz Question:  {quizData.quizQuestion} </span>
+        <Card style={{backgroundColor:'seagreen', color:'antiquewhite'}}
+              className={'d-flex float-start w-25 p-2 m-1'}
+              border={'secondary'} >
+
+            <span className={'text-decoration-underline'}>Quiz for: </span>{quizData.applicant}
+            <span className={'text-decoration-underline'}> Quiz Question: </span> {quizData.quizQuestion}
         {/*might have to change this - its reading as function*/}
-        <span> Quiz Grade: {quizData.grade}</span>
+        <span className={'text-decoration-underline'}> Quiz Grade: </span>{quizData.grade}
         {/*<span>{quizData.applicant}</span>*/}
         <span> {quizData.finished}</span>
         {/*not sure this needs to be here*/}
         <div>
         <span className={'ml-2'}><Button onClick={(e) => {editQuiz(e)}}
-                className={'m-2 text-white'}
+                className={'m-2'}
                 size={'sm'}
-                variant={'warning'}
+                variant={'dark'}
         >Edit</Button></span>
         <span className={'ml-2'}><Button
-            className={'m-2  text-white'}
+            className={'m-2'}
             size={'sm'}
-            variant={'danger'}
+            variant={'secondary'}
             onClick={(e) => {deleteQuiz(e)}}
         >Delete</Button></span>
         </div>
