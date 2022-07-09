@@ -24,7 +24,7 @@ export function Quiz({quizData}) {
     }
     return <>
 
-        <Card style={{backgroundColor:'seagreen', color:'antiquewhite'}}
+        <Card style={{backgroundColor:'#E7DFC6', color:'#607744'}}
               className={'d-flex float-start w-25 p-2 m-1'}
               border={'secondary'} >
 
