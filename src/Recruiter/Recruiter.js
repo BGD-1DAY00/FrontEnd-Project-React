@@ -3,6 +3,7 @@ import {QuizList} from "../QuizList/QuizList";
 import {getQuizList} from "../Store/reduxFunctions";
 import {useDispatch} from "react-redux";
 import {useEffect} from "react";
+import {ApplicantQuizList} from "../ApplicantQuizList/ApplicantQuizList";
 
 
 export function Recruiter(){
@@ -17,5 +18,9 @@ export function Recruiter(){
     return <>
         <QuizInput/>
         <QuizList/>
+        <br/>
+        <h2>Quizzes by Applicant</h2>
+        <br/>
+        <ApplicantQuizList/>
     </>
 }
