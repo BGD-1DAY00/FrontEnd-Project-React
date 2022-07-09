@@ -2,6 +2,7 @@ import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {createUser, editUser, impersonateUser} from "../Store/reduxFunctions";
 import {Button, Card, Form} from "react-bootstrap";
+import CardHeader from "react-bootstrap/CardHeader";
 
 export function CreateComponent() {
 
@@ -197,9 +198,10 @@ if (editing) {
 }
     return (
         <Card className={'w-50 text-center m-auto'}>
-            <h3>Create a new user</h3>
+            <CardHeader style={{backgroundColor:"lightblue", color:'purple'}} className={'fs-2'}>Create a new user</CardHeader>
+            {/*<div><font color="#663399"><h3>Create a new user</h3></font></div>*/}
 
-            <Form className={'p-3'} onSubmit={addUser}>
+            <Form className={'p-3'} onSubmit={addUser} style={{backgroundColor:'lightcyan'}}>
                 <Form.Group className={'mb-3'}>
                 <Form.Label>Username: </Form.Label>
                     <input onChange={updateUsername} value={formState.username} placeholder="username" type='text' />
@@ -216,10 +218,13 @@ if (editing) {
 
                 <input type="checkbox" onChange={updateAdminRole} checked={formState.admin} />  Admin
                 <br/>
+                <br/>
 
                 <Button  type='submit'>Submit</Button>
-            </Form>
-                {createUserMessage && <div>{createUserMessage}</div>}
 
+            </Form>
+            <Card.Footer>
+                {createUserMessage && <div><font color="red">{createUserMessage}</font></div>}
+            </Card.Footer>
         </Card> )
 }

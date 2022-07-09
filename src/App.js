@@ -30,7 +30,8 @@ function App() {
     }
     if(role === 'admin'){
         return <>
-            <h1>Admin page</h1>
+            {/*<h1>Admin page</h1>*/}
+            <div><font color="blue"><h2>Admin Page</h2></font></div>
             <Admin />
         </>
 
