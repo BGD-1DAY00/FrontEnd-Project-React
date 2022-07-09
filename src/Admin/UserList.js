@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {deleteUser, getUserList} from "../Store/reduxFunctions";
 import {useDispatch, useSelector} from "react-redux";
 import {EDITING, IMPERSONATING} from "../Store/actions";
+import {Button} from "react-bootstrap";
 
 export function UserList() {
 
@@ -60,7 +61,7 @@ export function UserList() {
 
     return (
         <>
-            <h2>User List</h2>
+            <div><font color="#663399"><h2>User List</h2></font></div>
             <form onSubmit={handleForm}>
                 <select onChange={onChangeUser}>
                     <option>Please select a user</option>
@@ -71,9 +72,17 @@ export function UserList() {
                         }
                     )}}
                 </select>
-                <button onClick={(e) => {editUser(e)}}>Edit</button>
-                <button onClick={(e) => {dlUser(e)}}>Delete</button>
-                <button onClick={impersonateUser}>Impersonate</button>
+                <span className={'ml-2'}><Button onClick={(e) => {editUser(e)}}
+                                                 className={'m-2'}
+                                                 size={'sm'}
+                                                 variant={'warning'}
+                >Edit</Button></span>
+                <span className={'ml-2'}><Button onClick={(e) => {dlUser(e)}}
+                                                 className={'m-2'}
+                                                 size={'sm'}
+                                                 variant={'danger'}
+                >Delete</Button></span>
+                <Button onClick={impersonateUser}>Impersonate</Button>
 
                 {/*{user && <h3>Please select a user</h3>}*/}
             </form>
