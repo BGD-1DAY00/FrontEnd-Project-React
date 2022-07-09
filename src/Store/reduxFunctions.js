@@ -12,6 +12,7 @@ import {
 	CREATE_QUIZ, LOGIN_IMPERSONATE_FAILURE, LOGIN_IMPERSONATE_SUCCESS, ADMIN_IMPERSONATE_SUCCESS, EDIT_SUCCESS
 
 } from "./actions";
+import {useSelector} from "react-redux";
 
 
 export function initiateLogin(cred) {
@@ -175,7 +176,6 @@ export function editQuiz(quizObj, id) {
 				},
 				body: JSON.stringify(quizObj)
 			})
-			console.log(await response.json())
 			if (response.ok)
 				console.log("update successful")
 			else {

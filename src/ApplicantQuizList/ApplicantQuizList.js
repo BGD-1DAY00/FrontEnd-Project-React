@@ -19,7 +19,7 @@ export function ApplicantQuizList () {
         const interval = setInterval ( () => {
             dispatch(getUserList());
             dispatch(getQuizList());
-    }, 30000);
+    }, 300000);
         return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [])
