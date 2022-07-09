@@ -88,24 +88,27 @@ export function QuizInput() {
     }
 
     return<>
-        <Card className={'m-2 bg-secondary border-secondary row '}>
-            <CardHeader className={'h3 float-start text-white'}>Quiz Template</CardHeader>
+        <Card style={{backgroundColor:'#607744', color:'#E7DFC6'}} className={'m-auto border-secondary row w-50'}>
+            <CardHeader className={'h3 float-start text-center'}>Quiz Template</CardHeader>
 
         <form onSubmit={onFormSubmit}>
 
             <FormGroup>
-            <FormLabel className={'text-secondary input-group-text'} >
+            <FormLabel style={{backgroundColor:'#607744', color:'#E7DFC6'}}  >
                 Question:
+            </FormLabel>
                 <FormControl required onChange={onQuestionChange}
                              value={formState.quizQuestion}
                              type={'text'}
                              // placeholder={"Question"}
-
                 />
-            </FormLabel>
             </FormGroup>
-            <Dropdown className={'text-white'}>
+            <br/>
+            <FormGroup>
+            <Dropdown >
+                <FormLabel>
                 Applicant:
+                </FormLabel>
                 <select onChange={onApplicantChange} defaultValue={"Applicant"}>
                     <option key={"applicant"} value={"Applicant"} disabled>
                         Applicant
@@ -121,9 +124,10 @@ export function QuizInput() {
                     }
                 </select>
             </Dropdown>
+            </FormGroup>
 
             <FormGroup>
-                <FormLabel className={'mt-3 text-warning input-group-sm'}>
+                <FormLabel className={'mt-3 input-group-sm'}>
                     Grade:
                     <FormControl onChange={onGradeChange}
                                  value={formState.grade}
@@ -132,15 +136,17 @@ export function QuizInput() {
                     />
                 </FormLabel>
             </FormGroup>
-
-            <FormGroup>
-                <FormLabel className={'text-warning'}>
+            <Card.Footer>
+            <FormGroup className={'text-center'}>
+                <FormLabel className={''}>
                     Finished:
                     <input onChange={onFinishedChange} checked={formState.finished} type={'checkbox'} className={'m-1'}/>
                 </FormLabel>
-            </FormGroup>
+
 
             <Button onClick={onFormSubmit} className={'m-1'} variant={'primary'}>Submit</Button>
+            </FormGroup>
+            </Card.Footer>
         </form>
         </Card>
     </>
