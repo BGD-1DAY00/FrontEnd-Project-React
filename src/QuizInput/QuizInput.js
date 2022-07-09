@@ -140,7 +140,7 @@ export function QuizInput() {
                 </FormLabel>
             </FormGroup>
 
-            <Button className={'m-1'} variant={'primary'}>Submit</Button>
+            <Button onClick={onFormSubmit} className={'m-1'} variant={'primary'}>Submit</Button>
         </form>
         </Card>
     </>
