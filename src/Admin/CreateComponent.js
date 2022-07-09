@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {createUser, editUser, impersonateUser} from "../Store/reduxFunctions";
+import {Button, Card, Form} from "react-bootstrap";
 
 export function CreateComponent() {
 
@@ -195,23 +196,30 @@ if (editing) {
     </>
 }
     return (
-        <>
-            <h2>Create</h2>
-            <form onSubmit={addUser}>
-                <label>Username:
+        <Card className={'w-50 text-center m-auto'}>
+            <h3>Create a new user</h3>
+
+            <Form className={'p-3'} onSubmit={addUser}>
+                <Form.Group className={'mb-3'}>
+                <Form.Label>Username: </Form.Label>
                     <input onChange={updateUsername} value={formState.username} placeholder="username" type='text' />
-                </label>
-                <label>Password:
+                </Form.Group>
+                <Form.Group className={'mb-3'}>
+                    <Form.Label>Password:</Form.Label>
                     <input onChange={updatePassword} value={formState.password} placeholder="password" type='text' />
-                </label>
+                </Form.Group>
+
 
                 <input type="checkbox" onChange={updateApplicantRole} checked={formState.applicant} /> Applicant
+
                 <input type="checkbox" onChange={updateRecruiterRole} checked={formState.recruiter} /> Recruiter
+
                 <input type="checkbox" onChange={updateAdminRole} checked={formState.admin} />  Admin
+                <br/>
 
-                <button  type='submit'>Submit</button>
-
+                <Button  type='submit'>Submit</Button>
+            </Form>
                 {createUserMessage && <div>{createUserMessage}</div>}
-                </form>
-        </>   )
+
+        </Card> )
 }
