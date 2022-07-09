@@ -153,24 +153,32 @@ export function CreateComponent() {
 
     if (impersonating) {
         return <>
-            <h2>Impersonate</h2>
-            <form onSubmit={onImpSubmit}>
-                <label>Username:
+            <Card className={'w-50 text-center m-auto'}>
+                <CardHeader style={{backgroundColor:"lightblue", color:'purple'}} className={'fs-3'}>Impersonate User</CardHeader>
+            {/*<h2>Impersonate</h2>*/}
+            <Form className={'p-3'} onSubmit={onImpSubmit} style={{backgroundColor:'lightcyan'}}>
+                <Form.Group className={'mb-3'}>
+                    <Form.Label>Username:</Form.Label>
                     <input required value={selectedUser[0].username} type='text' disabled={true}/>
-                </label>
-                <label>Password:
+                </Form.Group>
+                <Form.Group className={'mb-3'}>
+                <Form.Label>Password:</Form.Label>
                     <input value={selectedUser[0].password} type='text' disabled={true}/>
-                </label>
+                </Form.Group>
 
                 <input type="radio" onChange={handleRole} name="role" value="applicant"/> Applicant
                 <input type="radio" onChange={handleRole} name="role" value="recruiter"/> Recruiter
                 <input type="radio" onChange={handleRole} name="role" value="admin"/>  Admin
+                <br/>
+                <br/>
+                <Button  type='submit'>Submit</Button>
+            </Form>
+                {/*{impersonateFailure && <h3>Person you are trying to impersonate does not exist or have that role</h3>}*/}
+                <Card.Footer>
+                    {impersonateFailure && <div><font color="red">Person you are trying to impersonate does not exist or have that role</font></div>}
+                </Card.Footer>
 
-                <button  type='submit'>Submit</button>
-
-                {impersonateFailure && <h3>Person you are trying to impersonate does not exist or have that role</h3>}
-
-            </form>
+            </Card>
         </>
     }
 
@@ -178,22 +186,29 @@ export function CreateComponent() {
 if (editing) {
     console.log(editState)
     return <>
-        <h2>Edit</h2>
-        <form onSubmit={onEditSubmit}>
-            <label>Username:
+        <Card className={'w-50 text-center m-auto'}>
+            <CardHeader style={{backgroundColor:"lightblue", color:'purple'}} className={'fs-3'}>Edit User</CardHeader>
+        {/*<h2>Edit</h2>*/}
+        <Form className={'p-3'} onSubmit={onEditSubmit} style={{backgroundColor:'lightcyan'}}>
+            <Form.Group className={'mb-3'}>
+            <Form.Label>Username:</Form.Label>
+
                 <input onChange={updateUsername} value={editState.username} placeholder={selectedUser[0].username} type='text' />
-            </label>
-            <label>Password:
+            </Form.Group>
+            <Form.Group className={'mb-3'}>
+            <Form.Label>Password:</Form.Label>
                 <input onChange={updatePassword} value={editState.password} placeholder={selectedUser[0].password} type='text' />
-            </label>
+            </Form.Group>
 
             <input type="checkbox" onChange={updateApplicantRole} checked={editState.applicant} /> Applicant
             <input type="checkbox" onChange={updateRecruiterRole} checked={editState.recruiter} /> Recruiter
             <input type="checkbox" onChange={updateAdminRole} checked={editState.admin} />  Admin
+            <br/>
+            <br/>
+            <Button  type='submit'>Submit</Button>
 
-            <button  type='submit'>Submit</button>
-
-        </form>
+        </Form>
+        </Card>
     </>
 }
     return (
