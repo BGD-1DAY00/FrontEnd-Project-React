@@ -14,11 +14,13 @@ export function ApplicantQuizList () {
     const [formState, setFormState] = useState("")
     //user
     useEffect(() => {
-        dispatch(getUserList())
-        dispatch(getQuizList())
-        // dispatch(findSpecificUser(token))
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+        const interval = setInterval ( () => {
+            dispatch(getUserList());
+            dispatch(getQuizList());
+    }, 30000);
+        return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [])
     console.log(quizList)
 
     function onApplicantChange(e) {
