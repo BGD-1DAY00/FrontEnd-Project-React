@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {useDispatch} from 'react-redux';
 import {initiateLogin} from "../Store/reduxFunctions";
+import {Button, Card, Form} from "react-bootstrap";
 
 export function Login(){
 
@@ -27,22 +28,26 @@ export function Login(){
 //added admin branch
     return(
         <>
-            <form onSubmit={addUser}>
-                <label>Username:
+            <Card className=  {'w-50 text-center'} >
+            <Form className={'p-3'} onSubmit={addUser}>
+                <Form.Group>
+                <Form.Label >Username:</Form.Label>
                 <input required onChange={addUsername} value={username} placeholder="username" type='text' />
-                </label>
+                </Form.Group>
 
-                <label>Password:
+                <Form.Group>
+                <Form.Label>Password:</Form.Label>
                 <input onChange={addPassword} value={password} placeholder="password" type='text' />
-                </label>
-
+                </Form.Group>
 
                 <input type="radio" onChange={handleRole} name="role" value="applicant" /> Applicant
                 <input type="radio" onChange={handleRole} name="role" value="recruiter" /> Recruiter
                 <input type="radio" onChange={handleRole} name="role" value="admin" />  Admin
+                <br/>
 
-                <button  type='submit'>Submit</button>
-            </form>
+                <Button  type='submit'>Submit</Button>
+            </Form>
+            </Card>
         </>
     );
 }

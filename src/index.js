@@ -5,6 +5,7 @@ import App from './App';
 import {Provider} from 'react-redux';
 import {applyMiddleware, combineReducers, compose,createStore} from "redux";
 import {login, user,admin, quiz} from "./Store/reducer";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
