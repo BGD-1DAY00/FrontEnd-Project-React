@@ -8,7 +8,7 @@ const dispatch =useDispatch()
     const quizList =useSelector(state=>state.quiz.quizList)
     //filter the quizlist through the current User
     const currentUser = useSelector(state=>state.login.currentUser)
-
+    const filteredList = quizList.filter(s=>s.applicant === currentUser)
     //user
     useEffect(() => {
         dispatch(getUserList())
@@ -22,15 +22,15 @@ const dispatch =useDispatch()
         <>
             <h2>Quiz to take</h2>
 
-            {quizList.filter(s =>s.finished === false && s.grade === "").map((s)=>{
-                return <>
-                    {s.quizQuestion}
+            {filteredList.filter(s =>s.finished === false).map((s)=>{
+                return <div style={{marginBottom: '1rem'}}>
+                    <div style={{margin: '1rem', display:'inline'}}>{s.quizQuestion}</div>
                     <input/>
-                    <button  type='submit'>Submit</button>
-                    </>
+                    <button  type='submit'>Submit</button> <br />
+                    </div>
             })}
              <h2>Completed Quiz</h2>
-            {quizList.filter(s =>s.finished === true || s.grade !== "").map((s)=>{
+            {filteredList.filter(s =>s.finished === true ).map((s)=>{
                 return <>
                     {s.quizQuestion}
                     {s.grade}
