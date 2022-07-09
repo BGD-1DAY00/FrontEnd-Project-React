@@ -29,15 +29,16 @@ export function Login(){
 //added admin branch
     return(
         <>
+            <div className={'p-5'}>
             <Card className=  {'w-50 text-center m-auto'} >
-                <CardHeader className={'fs-2'}>Welcome to our Website!</CardHeader>
-            <Form className={'p-3'} onSubmit={addUser}>
-                <Form.Group>
+                <CardHeader style={{backgroundColor:"seagreen", color:'floralwhite'}} className={'fs-2'}>Welcome to our Website!</CardHeader>
+            <Form className={'p-0'} onSubmit={addUser} style={{backgroundColor:'floralwhite'}}>
+                <Form.Group className={'p-2'}>
                 <Form.Label >Username:</Form.Label>
                 <input required onChange={addUsername} value={username} placeholder="username" type='text' />
                 </Form.Group>
 
-                <Form.Group>
+                <Form.Group >
                 <Form.Label>Password:</Form.Label>
                 <input onChange={addPassword} value={password} placeholder="password" type='text' />
                 </Form.Group>
@@ -47,10 +48,11 @@ export function Login(){
                 <input type="radio" onChange={handleRole} name="role" value="admin" />  Admin
                 <br/>
                 <Card.Footer>
-                <Button  type='submit'>Submit</Button>
+                <Button variant={"outline-success"}  type='submit'>Submit</Button>
                 </Card.Footer>
             </Form>
             </Card>
+            </div>
         </>
     );
 }
