@@ -22,34 +22,30 @@ export function Quiz({quizData}) {
         const selectedQuiz = quizList.filter(s => s.id === quizData.id)
         dispatch(deletingQuiz(selectedQuiz[0].id))
     }
+
     return <>
 
-        <Card style={{backgroundColor:'#E7DFC6', color:'#607744'}}
+        <Card style={{backgroundColor: '#E7DFC6', color: '#607744'}}
               className={'d-flex float-start w-25 p-2 m-1'}
-              border={'secondary'} >
+              border={'secondary'}>
 
             <span className={'text-decoration-underline'}>Quiz for: </span>{quizData.applicant}
             <span className={'text-decoration-underline'}> Quiz Question: </span> {quizData.quizQuestion}
-        {/*might have to change this - its reading as function*/}
-        <span className={'text-decoration-underline'}> Quiz Grade: </span>{quizData.grade}
-        {/*<span>{quizData.applicant}</span>*/}
-        <span> {quizData.finished}</span>
-        {/*not sure this needs to be here*/}
+            <span className={'text-decoration-underline'}> Quiz Answer: </span> {quizData.quizAnswer}
+            {/*might have to change this - its reading as function*/}
+            <span className={'text-decoration-underline'}> Quiz Grade: </span>{quizData.grade}
+            {/*<span>{quizData.applicant}</span>*/}
+            <span> {quizData.finished}</span>
+            {/*not sure this needs to be here*/}
         <div>
-        <span className={'ml-2'}><Button onClick={(e) => {editQuiz(e)}}
-                className={'m-2'}
-                size={'sm'}
-                variant={'dark'}
-        >Edit</Button></span>
-        <span className={'ml-2'}><Button
-            className={'m-2'}
-            size={'sm'}
-            variant={'secondary'}
-            onClick={(e) => {deleteQuiz(e)}}
-        >Delete</Button></span>
+            <span className={'ml-2'}><Button className={'m-2'} size={'sm'} variant={'dark'}
+             onClick={(e) => {editQuiz(e)}}>Edit</Button></span>
+
+            <span className={'ml-2'}><Button className={'m-2'} size={'sm'} variant={'secondary'}
+                onClick={(e) => {deleteQuiz(e)}}>Delete</Button></span>
         </div>
         </Card>
 
-        </>
+    </>
 }
 
