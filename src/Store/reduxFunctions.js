@@ -195,6 +195,35 @@ export function editQuiz(quizObj, id) {
 	}
 
 }
+
+export function answerQuiz(quizObj, id) {
+
+	// new object
+	// the username for the user to update
+	return async function sideEffect(dispatch) {
+		try {
+			const response = await fetch(`http://localhost:8080/answerQuiz/${id}`, {
+				method: 'PUT',
+				headers: {
+					'Accept': 'application/json', // willing to accept
+					'Content-Type': 'application/json', //defining what we are sending
+					"Access-Control-Allow-Origin" : "*"
+				},
+				body: JSON.stringify(quizObj)
+			})
+			if (response.ok)
+				console.log("update successful")
+			else {
+				console.log("update not successful")
+			}
+			dispatch(getQuizList())
+
+		} catch(e) {
+			console.log(e)
+		}
+	}
+}
+
 export function deletingQuiz(id) {
 	return async function sideEffect(dispatch) {
 		try {

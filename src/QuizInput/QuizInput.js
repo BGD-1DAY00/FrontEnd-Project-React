@@ -14,6 +14,7 @@ export function QuizInput() {
 
     let newQuiz = {
             quizQuestion: "",
+            quizAnswer: "",
             grade: "",
             finished: false,
             applicant: ""
@@ -66,6 +67,13 @@ export function QuizInput() {
         })
     }
 
+    function onAnswerChange(e) {
+        setFormState({
+            ...formState,
+            quizAnswer: e.target.value
+        })
+    }
+
     function onGradeChange(e) {
         setFormState({
             ...formState,
@@ -101,6 +109,16 @@ export function QuizInput() {
                              value={formState.quizQuestion}
                              type={'text'}
                              // placeholder={"Question"}
+                />
+            </FormGroup>
+            <br/>
+            <FormGroup>
+                <FormLabel style={{backgroundColor:'#607744', color:'#E7DFC6'}}  >
+                    Answer:
+                </FormLabel>
+                <FormControl onChange={onAnswerChange}
+                             value={formState.quizAnswer}
+                             type={'text'}
                 />
             </FormGroup>
             <br/>
