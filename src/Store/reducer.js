@@ -98,7 +98,8 @@ export function admin(state = initCreateUser, action) {
             return {
                 ...state,
                 editing: false,
-                selectedUser: null
+                selectedUser: null,
+                editFailed: false
             }
         case EDIT_FAILURE:
             return {

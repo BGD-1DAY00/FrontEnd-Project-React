@@ -156,6 +156,9 @@ export function editUser(userObj, username) {
 			}
 			else {
 				dispatch({type: EDIT_FAILURE})
+				setTimeout(() => {
+					dispatch({type: EDIT_SUCCESS})
+				}, 3000)
 			}
 			dispatch(getUserList())
 		} catch(e) {
