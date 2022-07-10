@@ -52,8 +52,7 @@ export function login(state = initLogin, action){
             }
         case GO_HOME:
             return{
-                ...state,
-                role: null
+                ...initLogin,
             }
         // case GO_TO_ADMIN:
         //     return{
@@ -124,6 +123,10 @@ export function admin(state = initCreateUser, action) {
             ...state,
             optionSelected: action.select
         }
+        case GO_HOME:
+            return{
+                ...initCreateUser,
+            }
         default:
             return{
                 ...state
@@ -178,6 +181,10 @@ export function quiz(state = initQuiz, action) {
                 ...state,
                 quizEditing: false,
                 selectedQuiz: null
+            }
+        case GO_HOME:
+            return{
+                ...initQuiz,
             }
         default:
             return {

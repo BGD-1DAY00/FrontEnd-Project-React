@@ -24,25 +24,26 @@ export function Applicant(){
 
     //on submit button in progress for applicant to update quiz answer on submit.
 
-    let {selectedQuiz} = useSelector(state => ({
-        selectedQuiz: state.quiz.selectedQuiz
-    }) )
+    // let {selectedQuiz} = useSelector(state => ({
+    //     selectedQuiz: state.quiz.selectedQuiz
+    // }) )
 
-    const [formState, setFormState] = useState(quizAnswer)
+    const [formState, setFormState] = useState('')
 
-    function Answer(e) {
+    console.log(formState)
+
+    function Answer(e,s) {
         e.preventDefault()
-        dispatch(answerQuiz(formState, selectedQuiz[0].id))
-        setFormState(selectedQuiz)
-        console.log("answer" + selectedQuiz)
+        dispatch(answerQuiz(formState.toString(), s))
+        setFormState('')
+        // console.log("answer" + selectedQuiz)
     }
 
     function onAnswerChange(e) {
-        setFormState({
-            ...formState,
-            quizAnswer: e.target.value
-        })
+        setFormState(e.target.value)
     }
+
+    console.log(filteredList)
 
     return(
         <>
@@ -50,24 +51,24 @@ export function Applicant(){
                 <h2>Quiz to take</h2>
             </div>
 
-            {filteredList.filter(s =>s.finished === false).map((s)=>{
-                return <div style={{marginBottom: '1rem'}}>
-                    <div style={{margin: '1rem', display:'inline'}}>{s.quizQuestion}</div>
+            {filteredList.filter(s =>s.finished === false).map((p)=>{
+                return <div key={p.id} style={{marginBottom: '1rem'}}>
+                    <div style={{margin: '1rem', display:'inline'}}>{p.quizQuestion}</div>
                     {/*//this is part of the onsubmit functionality*/}
                     <input onChange={onAnswerChange}
-                           value={formState.quizAnswer}
+                           // value={formState.quizAnswer}
                            type={'text'}/>
-                    <button onSubmit={Answer}  type='submit'>Submit</button> <br />
+                    <button onClick = {(e) => Answer(e, p.id)} type={"button"}>Submit</button> <br />
                     </div>
             })}
              <h2>Completed Quiz</h2>
             {filteredList.filter(s =>s.finished === true ).map((s)=>{
-                return <>
+                return <div key = {s.id}>
                     {s.quizQuestion}
                     {s.grade}
                     {s.finished? "finished" : "incomplete"}
 
-                </>
+                </div>
             })}
         </>
     )

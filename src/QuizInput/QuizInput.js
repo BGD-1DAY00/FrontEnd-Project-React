@@ -101,6 +101,8 @@ export function QuizInput() {
         })
     }
 
+    console.log(selectedQuiz, quizEditing)
+
     return<>
         <Card style={{backgroundColor:'#607744', color:'#E7DFC6'}} className={'m-auto border-secondary row w-50'}>
             <CardHeader className={'h3 float-start text-center'}>Quiz Template</CardHeader>
@@ -136,8 +138,8 @@ export function QuizInput() {
                 <FormLabel>
                 Applicant:
                 </FormLabel>
-                <select ref={dropdown} onChange={onApplicantChange} defaultValue={"Applicant"}>
-                    <option key={"applicant"} value={"Applicant"} disabled>
+                <select ref={dropdown} onChange={onApplicantChange} defaultValue={quizEditing ? selectedQuiz[0].applicant ? dropdown.current.value = selectedQuiz[0].applicant : "Applicant" : "Applicant"}>
+                    <option key={"applicant"} value={"Applicant"}>
                         Applicant
                     </option>
                     {

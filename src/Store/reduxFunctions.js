@@ -199,20 +199,21 @@ export function editQuiz(quizObj, id) {
 
 }
 
-export function answerQuiz(quizObj, id) {
+export function answerQuiz(quizAnswer, questionID) {
 
 	// new object
 	// the username for the user to update
+
 	return async function sideEffect(dispatch) {
 		try {
-			const response = await fetch(`http://localhost:8080/answerQuiz/${id}`, {
+			const response = await fetch(`http://localhost:8080/answerQuiz/${questionID}`, {
 				method: 'PUT',
 				headers: {
 					'Accept': 'application/json', // willing to accept
 					'Content-Type': 'application/json', //defining what we are sending
 					"Access-Control-Allow-Origin" : "*"
 				},
-				body: JSON.stringify(quizObj)
+				body: JSON.stringify(quizAnswer)
 			})
 			if (response.ok)
 				console.log("update successful")
