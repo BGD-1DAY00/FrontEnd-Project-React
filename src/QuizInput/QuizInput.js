@@ -47,6 +47,9 @@ export function QuizInput() {
         if(formState.quizQuestion === "") {
             return
         }
+        if (formState.applicant === "" || formState.applicant === "Applicant") {
+            return
+        }
         //dispatch
         // dispatch(initiateCreateQuiz(formState.quizQuestion, formState.applicant, formState.finished, formState.grade))
         if(!quizEditing) {

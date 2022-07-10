@@ -5,9 +5,9 @@ import {GO_HOME} from "../Store/actions";
 
 export function Applicant(){
 
-    // const quizAnswer = {
-    //     quizAnswer: "",
-    // }
+    const quizAnswer = {
+        quizAnswer: "",
+    }
 
     const dispatch =useDispatch()
     const quizList =useSelector(state=>state.quiz.quizList)
@@ -24,25 +24,25 @@ export function Applicant(){
 
     //on submit button in progress for applicant to update quiz answer on submit.
 
-    // let {selectedQuiz} = useSelector(state => ({
-    //     selectedQuiz: state.quiz.selectedQuiz
-    // }) )
-    //
-    // const [formState, setFormState] = useState(quizAnswer)
-    //
-    // function Answer(e) {
-    //     e.preventDefault()
-    //     dispatch(answerQuiz(formState, selectedQuiz[0].id))
-    //     setFormState(selectedQuiz)
-    //     console.log("answer" + selectedQuiz)
-    // }
-    //
-    // function onAnswerChange(e) {
-    //     setFormState({
-    //         ...formState,
-    //         quizAnswer: e.target.value
-    //     })
-    // }
+    let {selectedQuiz} = useSelector(state => ({
+        selectedQuiz: state.quiz.selectedQuiz
+    }) )
+
+    const [formState, setFormState] = useState(quizAnswer)
+
+    function Answer(e) {
+        e.preventDefault()
+        dispatch(answerQuiz(formState, selectedQuiz[0].id))
+        setFormState(selectedQuiz)
+        console.log("answer" + selectedQuiz)
+    }
+
+    function onAnswerChange(e) {
+        setFormState({
+            ...formState,
+            quizAnswer: e.target.value
+        })
+    }
 
     return(
         <>
