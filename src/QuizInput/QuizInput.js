@@ -6,7 +6,7 @@
 
 import {editQuiz, getQuizList, getUserList, initiateCreateQuiz} from "../Store/reduxFunctions";
 import {useDispatch, useSelector} from "react-redux";
-import {useState, useEffect} from "react";
+import {useState, useEffect, useRef} from "react";
 import {Button, Card, Dropdown, FormControl, FormGroup, FormLabel} from "react-bootstrap";
 import CardHeader from "react-bootstrap/CardHeader";
 
@@ -19,6 +19,8 @@ export function QuizInput() {
             finished: false,
             applicant: ""
         }
+
+    const dropdown = useRef()
 
     const dispatch = useDispatch()
 
@@ -54,6 +56,7 @@ export function QuizInput() {
         // dispatch(initiateCreateQuiz(formState.quizQuestion, formState.applicant, formState.finished, formState.grade))
         if(!quizEditing) {
             dispatch(initiateCreateQuiz(formState))
+            dropdown.current.value = "Applicant"
         }
         else {
             dispatch(editQuiz(formState, selectedQuiz[0].id))
@@ -127,10 +130,13 @@ export function QuizInput() {
             <br/>
             <FormGroup>
             <Dropdown >
+                <h4>
+                    Applicant must be selected.
+                </h4>
                 <FormLabel>
                 Applicant:
                 </FormLabel>
-                <select onChange={onApplicantChange} defaultValue={"Applicant"}>
+                <select ref={dropdown} onChange={onApplicantChange} defaultValue={"Applicant"}>
                     <option key={"applicant"} value={"Applicant"} disabled>
                         Applicant
                     </option>
