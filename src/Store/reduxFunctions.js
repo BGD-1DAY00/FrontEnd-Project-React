@@ -6,10 +6,16 @@ import {
 	CREATE_USER_FAILED,
 	GET_USERLIST,
 
-	GET_QUIZ_LIST, STOP_QUIZ_EDITING,
+	GET_QUIZ_LIST,
+	STOP_QUIZ_EDITING,
 
 
-	CREATE_QUIZ, LOGIN_IMPERSONATE_FAILURE, LOGIN_IMPERSONATE_SUCCESS, ADMIN_IMPERSONATE_SUCCESS, EDIT_SUCCESS
+	CREATE_QUIZ,
+	LOGIN_IMPERSONATE_FAILURE,
+	LOGIN_IMPERSONATE_SUCCESS,
+	ADMIN_IMPERSONATE_SUCCESS,
+	EDIT_SUCCESS,
+	EDIT_FAILURE
 
 } from "./actions";
 import {useSelector} from "react-redux";
@@ -147,10 +153,9 @@ export function editUser(userObj, username) {
 			console.log(await response)
 			if (response.ok) {
 				dispatch({type: EDIT_SUCCESS})
-				console.log("delete successful")
 			}
 			else {
-				console.log("delete not successful")
+				dispatch({type: EDIT_FAILURE})
 			}
 			dispatch(getUserList())
 		} catch(e) {

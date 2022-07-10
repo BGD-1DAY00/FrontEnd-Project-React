@@ -17,7 +17,8 @@ import {
     EDIT_SUCCESS,
     GO_HOME,
     GO_TO_ADMIN,
-    SELECT_DEFAULT
+    SELECT_DEFAULT,
+    EDIT_FAILURE
 
 } from "./actions";
 
@@ -71,7 +72,8 @@ const initCreateUser = {
     editing: null,
     impersonating: null,
     selectedUser: null,
-    optionSelected: null
+    optionSelected: null,
+    editFailed: null
 }
 
 export function admin(state = initCreateUser, action) {
@@ -97,6 +99,13 @@ export function admin(state = initCreateUser, action) {
                 ...state,
                 editing: false,
                 selectedUser: null
+            }
+        case EDIT_FAILURE:
+            return {
+                ...state,
+                editing: false,
+                selectedUser: null,
+                editFailed: true
             }
         case IMPERSONATING:
             return {

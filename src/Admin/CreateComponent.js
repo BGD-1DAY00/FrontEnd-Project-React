@@ -13,14 +13,16 @@ export function CreateComponent() {
         editing,
         selectedUser,
         impersonating,
-        impersonateFailure
+        impersonateFailure,
+        editFailed
     } = useSelector(state => ({
         token: state.login.token,
         createUserMessage: state.admin.createUserMessage,
         editing: state.admin.editing,
         selectedUser: state.admin.selectedUser,
         impersonating: state.admin.impersonating,
-        impersonateFailure: state.login.impersonateFailure
+        impersonateFailure: state.login.impersonateFailure,
+        editFailed: state.admin.editFailed,
     }))
     console.log(editing)
 
@@ -215,6 +217,7 @@ if (editing) {
             <Button  type='submit'>Submit</Button>
 
         </Form>
+
         </Card>
 
 
@@ -249,6 +252,7 @@ if (editing) {
             </Form>
             <Card.Footer>
                 {createUserMessage && <div><font color="red">{createUserMessage}</font></div>}
+                {editFailed && <div><font color="red">The name you have chosen already exists. Please choose a new name to edit for the selected user.</font></div>}
             </Card.Footer>
 
         </Card> )
