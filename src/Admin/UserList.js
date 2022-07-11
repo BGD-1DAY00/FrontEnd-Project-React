@@ -30,7 +30,7 @@ export function UserList() {
         })
     }
 
-    function dlUser(e) {
+    function dlUser() {
         dispatch(deleteUser(formState))
         dropdown.current.value = "default"
     }
@@ -75,12 +75,12 @@ export function UserList() {
                         }
                     )}}
                 </select>
-                <span className={'ml-2'}><Button onClick={(e) => {editUser(e)}}
+                <span className={'ml-2'}><Button onClick={(e) => {editUser()}}
                                                  className={'m-2'}
                                                  size={'sm'}
                                                  variant={'warning'}
                 >Edit</Button></span>
-                <span className={'ml-2'}><Button onClick={(e) => {dlUser(e)}}
+                <span className={'ml-2'}><Button onClick={(e) => {dlUser()}}
                                                  className={'m-2'}
                                                  size={'sm'}
                                                  variant={'danger'}
