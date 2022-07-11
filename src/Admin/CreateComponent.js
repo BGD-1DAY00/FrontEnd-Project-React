@@ -139,7 +139,7 @@ export function CreateComponent() {
 
     if (impersonating) {
         return <>
-            <Card className={'w-50 text-center m-auto'}>
+            <Card className={'w-80 text-center m-auto'}>
                 <CardHeader style={{backgroundColor: "lightblue", color: 'purple'}} className={'fs-3'}>Impersonate
                     User</CardHeader>
                 {/*<h2>Impersonate</h2>*/}
@@ -198,7 +198,7 @@ export function CreateComponent() {
         </>
     }
     return (
-        <Card className={'w-50 text-center m-auto'}>
+        <Card className={'w-80 text-center m-auto'}>
             <CardHeader style={{backgroundColor: "lightblue", color: 'purple'}} className={'fs-2'}>Create a new
                 user</CardHeader>
             <Form className={'p-3'} onSubmit={addUser} style={{backgroundColor: 'lightcyan'}}>

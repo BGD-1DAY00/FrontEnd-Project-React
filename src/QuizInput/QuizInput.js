@@ -104,7 +104,7 @@ export function QuizInput() {
     console.log(selectedQuiz, quizEditing)
 
     return<>
-        <Card style={{backgroundColor:'#607744', color:'#E7DFC6'}} className={'m-auto border-secondary row w-50'}>
+        <Card style={{backgroundColor:'#607744', color:'#E7DFC6'}} className={'m-auto border-secondary row w-65'}>
             <CardHeader className={'h3 float-start text-center'}>Quiz Template</CardHeader>
 
         <form onSubmit={onFormSubmit}>

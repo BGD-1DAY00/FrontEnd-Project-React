@@ -78,12 +78,12 @@ export function UserList() {
                 <span className={'ml-2'}><Button onClick={(e) => {editUser()}}
                                                  className={'m-2'}
                                                  size={'sm'}
-                                                 variant={'warning'}
+                                                 // variant={'warning'}
                 >Edit</Button></span>
                 <span className={'ml-2'}><Button onClick={(e) => {dlUser()}}
                                                  className={'m-2'}
                                                  size={'sm'}
-                                                 variant={'danger'}
+                                                 // variant={'danger'}
                 >Delete</Button></span>
                 <Button onClick={impersonateUser}>Impersonate</Button>
             </form>

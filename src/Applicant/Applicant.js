@@ -6,9 +6,9 @@ import {Card} from "react-bootstrap";
 
 export function Applicant(){
 
-    const quizAnswer = {
-        quizAnswer: "",
-    }
+    // const quizAnswer = {
+    //     quizAnswer: "",
+    // }
 
     const dispatch =useDispatch()
     const quizList =useSelector(state=>state.quiz.quizList)

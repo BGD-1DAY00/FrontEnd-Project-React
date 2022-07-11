@@ -16,8 +16,8 @@ function App() {
     if(role === 'applicant'){
         return (
             <>
-                <div style={{display: 'flex', justifyContent: "space-evenly"}}>
-                    <h1>Applicant</h1>
+                <div style={{backgroundColor: 'seagreen'}}><h1>Applicant</h1></div>
+                <div style={{display: 'flex', justifyContent: "space-evenly", position: "absolute", top: 10, right: 0}}>
                     <button onClick={()=> dispatch({type: GO_HOME})}>Go Home</button>
                 </div>
                 <Applicant />
@@ -27,8 +27,10 @@ function App() {
     if(role === 'recruiter'){
 
         return <>
-            <div style={{display: 'flex', justifyContent: "space-evenly"}}>
+            <div style={{}}>
                 <h1>Recruiter</h1>
+            </div>
+            <div style={{display: 'flex', justifyContent: "space-evenly", position: "absolute", top: 10, right: 0}}>
                 <button onClick={()=> dispatch({type: GO_HOME})}>Go Home</button>
             </div>
 
@@ -43,9 +45,10 @@ function App() {
     if(role === 'admin'){
         return <>
             {/*<h1>Admin page</h1>*/}
+            <div style={{backgroundColor: 'lightblue'}}><font color="blue"><h1>Admin Page</h1></font></div>
             <div style={{display: "flex", justifyContent:"space-evenly"}}>
-                <div><font color="blue"><center><h1>Admin Page</h1></center></font></div>
-                <button onClick={()=> dispatch({type: GO_HOME})}>Go Home</button>
+                <div style={{display: 'flex', justifyContent: "space-evenly", position: "absolute", top: 10, right: 0}}>
+                    <button onClick={()=> dispatch({type: GO_HOME})}>Go Home</button></div>
             </div>
             <Admin />
 
