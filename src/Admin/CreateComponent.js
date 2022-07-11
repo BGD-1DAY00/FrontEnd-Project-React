@@ -24,7 +24,6 @@ export function CreateComponent() {
         impersonateFailure: state.login.impersonateFailure,
         editFailed: state.admin.editFailed,
     }))
-    console.log(editing)
 
     const newUser = {
         username: '',
@@ -170,14 +169,11 @@ export function CreateComponent() {
         </>
     }
 
-    console.log(selectedUser)
     if (editing) {
-        console.log(editState)
         return <>
             <Card className={'w-50 text-center m-auto'}>
                 <CardHeader style={{backgroundColor: "lightblue", color: 'purple'}} className={'fs-3'}>Edit
                     User</CardHeader>
-                {/*<h2>Edit</h2>*/}
                 <Form className={'p-3'} onSubmit={onEditSubmit} style={{backgroundColor: 'lightcyan'}}>
                     <Form.Group className={'mb-3'}>
                         <Form.Label>Username:</Form.Label>

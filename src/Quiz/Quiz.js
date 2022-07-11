@@ -34,7 +34,6 @@ export function Quiz({quizData}) {
             <span className={'text-decoration-underline'}> Quiz Answer: </span> {quizData.quizAnswer}
             {/*might have to change this - its reading as function*/}
             <span className={'text-decoration-underline'}> Quiz Grade: </span>{quizData.grade}
-            {/*<span>{quizData.applicant}</span>*/}
             <span> {quizData.finished}</span>
             {/*not sure this needs to be here*/}
         <div>

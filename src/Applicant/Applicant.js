@@ -19,32 +19,20 @@ export function Applicant(){
     useEffect(() => {
         dispatch(getUserList())
         dispatch(getQuizList())
-        // dispatch(findSpecificUser(token))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    //on submit button in progress for applicant to update quiz answer on submit.
-
-    // let {selectedQuiz} = useSelector(state => ({
-    //     selectedQuiz: state.quiz.selectedQuiz
-    // }) )
-
     const [formState, setFormState] = useState('')
-
-    console.log(formState)
 
     function Answer(e,s) {
         e.preventDefault()
         dispatch(answerQuiz(formState.toString(), s))
         setFormState('')
-        // console.log("answer" + selectedQuiz)
     }
 
     function onAnswerChange(e) {
         setFormState(e.target.value)
     }
-
-    console.log(filteredList)
 
     return(
         <>

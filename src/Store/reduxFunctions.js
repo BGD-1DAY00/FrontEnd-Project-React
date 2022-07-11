@@ -10,7 +10,6 @@ import {
 	STOP_QUIZ_EDITING,
 
 
-	CREATE_QUIZ,
 	LOGIN_IMPERSONATE_FAILURE,
 	LOGIN_IMPERSONATE_SUCCESS,
 	ADMIN_IMPERSONATE_SUCCESS,
@@ -18,7 +17,6 @@ import {
 	EDIT_FAILURE
 
 } from "./actions";
-import {useSelector} from "react-redux";
 
 
 export function initiateLogin(cred) {
@@ -100,7 +98,7 @@ export function initiateCreateQuiz(quiz) {
 
 
 export function getQuizList(){
-    return async function sideEffect(dispatch, getState){
+    return async function sideEffect(dispatch){
         try{
             const response = await fetch("http://localhost:8080/getQuizList")
             const data = await response.json();

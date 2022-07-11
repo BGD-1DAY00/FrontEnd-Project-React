@@ -23,7 +23,6 @@ export function ApplicantQuizList () {
         return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [])
-    console.log(quizList)
 
     function onApplicantChange(e) {
         setFormState({
