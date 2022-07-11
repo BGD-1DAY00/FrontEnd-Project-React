@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {findSpecificUser, getQuizList, getUserList, answerQuiz} from "../Store/reduxFunctions";
 import {useDispatch, useSelector} from "react-redux";
 import {GO_HOME} from "../Store/actions";
+import {Card} from "react-bootstrap";
 
 export function Applicant(){
 
@@ -64,9 +65,21 @@ export function Applicant(){
              <h2>Completed Quiz</h2>
             {filteredList.filter(s =>s.finished === true ).map((s)=>{
                 return <div key = {s.id}>
-                    {s.quizQuestion}
-                    {s.grade}
-                    {s.finished? "finished" : "incomplete"}
+                    <Card style={{backgroundColor: '#E7DFC6', color: '#607744'}}
+                          className={'d-flex float-start w-25 p-2 m-1'}
+                          border={'secondary'}>
+
+                        <span className={'text-decoration-underline'}>Quiz for: </span>{s.applicant}
+                        <span className={'text-decoration-underline'}> Quiz Question: </span> {s.quizQuestion}
+                        <span className={'text-decoration-underline'}> Quiz Answer: </span> {s.quizAnswer}
+                        {/*might have to change this - its reading as function*/}
+                        <span className={'text-decoration-underline'}> Quiz Grade: </span>{s.grade}
+                        {/*<span>{quizData.applicant}</span>*/}
+                        <span> {s.finished? "finished" : "incomplete"}</span>
+                    </Card>
+                    {/*{s.quizQuestion}*/}
+                    {/*{s.grade}*/}
+                    {/*{s.finished? "finished" : "incomplete"}*/}
 
                 </div>
             })}
