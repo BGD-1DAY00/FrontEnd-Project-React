@@ -171,7 +171,7 @@ export function CreateComponent() {
 
     if (editing) {
         return <>
-            <Card className={'w-50 text-center m-auto'}>
+            <Card className={'w-80 text-center m-auto'}>
                 <CardHeader style={{backgroundColor: "lightblue", color: 'purple'}} className={'fs-3'}>Edit
                     User</CardHeader>
                 <Form className={'p-3'} onSubmit={onEditSubmit} style={{backgroundColor: 'lightcyan'}}>
