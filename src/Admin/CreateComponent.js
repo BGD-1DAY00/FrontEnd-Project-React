@@ -223,7 +223,6 @@ export function CreateComponent() {
 
             </Form>
             <Card.Footer>
-                {createUserMessage && <div><font color="red">{createUserMessage}</font></div>}
                 {editFailed &&
                     <div><font color="red">The name you have chosen already exists. Please choose a new name to edit for
                         the selected user.</font></div>}

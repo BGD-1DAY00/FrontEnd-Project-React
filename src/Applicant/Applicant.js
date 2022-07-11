@@ -6,10 +6,6 @@ import {Card} from "react-bootstrap";
 
 export function Applicant(){
 
-    // const quizAnswer = {
-    //     quizAnswer: "",
-    // }
-
     const dispatch =useDispatch()
     const quizList =useSelector(state=>state.quiz.quizList)
     //filter the quizlist through the current User
@@ -24,8 +20,9 @@ export function Applicant(){
 
     const [formState, setFormState] = useState('')
 
-    function Answer(e,s) {
-        e.preventDefault()
+    // takes in the applicant's quiz id to send to be passed into a redux function
+    function Answer(s) {
+        // dispatches function with the user's answer and quiz id
         dispatch(answerQuiz(formState.toString(), s))
         setFormState('')
     }
@@ -40,14 +37,15 @@ export function Applicant(){
                 <h2>Quiz to take</h2>
             </div>
 
-            {filteredList.filter(s =>s.finished === false).map((p)=>{
+            {/*filters the unfinished quizzes from the user's assigned quizzes*/}
+            {/*we then map over that new array, returning the user's quiz information*/}
+            {filteredList.filter(s => s.finished === false).map((p)=>{
                 return <div key={p.id} style={{marginBottom: '1rem'}}>
                     <div style={{margin: '1rem', display:'inline'}}>{p.quizQuestion}</div>
                     {/*//this is part of the onsubmit functionality*/}
-                    <input onChange={onAnswerChange}
-                           // value={formState.quizAnswer}
-                           type={'text'}/>
-                    <button onClick = {(e) => Answer(e, p.id)} type={"button"}>Submit</button> <br />
+                    <input onChange={onAnswerChange} type={'text'}/>
+                    {/*the code below is passing the quiz id OR p.id into our answer function*/}
+                    <button onClick = {() => Answer(p.id)} type={"button"}>Submit</button> <br />
                     </div>
             })}
              <h2>Completed Quiz</h2>

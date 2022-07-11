@@ -17,7 +17,7 @@ export function UserList() {
     }, [])
     const optionSelected = useSelector(state=>state.admin.optionSelected)
     const userList = useSelector(state => state.user.userList)
-    const [formState, setFormState] = useState()
+    const [formState, setFormState] = useState({})
 
     if(optionSelected){
         dropdown.current.value = "default"
@@ -34,8 +34,6 @@ export function UserList() {
         dispatch(deleteUser(formState))
         dropdown.current.value = "default"
     }
-
-    console.log(formState)
 
     function handleForm(e) {
         e.preventDefault();
