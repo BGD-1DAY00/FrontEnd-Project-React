@@ -77,9 +77,6 @@ export function Applicant(){
                         {/*<span>{quizData.applicant}</span>*/}
                         <span> {s.finished? "finished" : "incomplete"}</span>
                     </Card>
-                    {/*{s.quizQuestion}*/}
-                    {/*{s.grade}*/}
-                    {/*{s.finished? "finished" : "incomplete"}*/}
 
                 </div>
             })}

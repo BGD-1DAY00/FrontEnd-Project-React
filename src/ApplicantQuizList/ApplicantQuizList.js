@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {getQuizList, getUserList} from "../Store/reduxFunctions";
 import {useState} from "react";
-import {Card, Dropdown} from "react-bootstrap";
+import {Card, Col, Dropdown} from "react-bootstrap";
 import CardHeader from "react-bootstrap/CardHeader";
 
 
@@ -55,8 +55,8 @@ export function ApplicantQuizList () {
                 </select>
             </Dropdown>
 
-
-
+            <div className={'row'}>
+             <Col>
             <h2>Quizzes Assigned</h2>
 
             {filteredList.filter(s =>s.finished === false).map((s)=>{
@@ -68,24 +68,24 @@ export function ApplicantQuizList () {
 
                     </Card>
                 </>
-                {/*<div style={{marginBottom: '1rem'}}>*/}
-                {/*    <div style={{margin: '1rem', display:'inline'}}>{s.quizQuestion}</div>*/}
-                {/*</div>*/}
+
             })}
-
-
+             </Col>
+             <Col>
                 <h2>Completed Quizzes</h2>
             {filteredList.filter(s =>s.finished === true ).map((s)=>{
                 return <>
                 <Card style={{color:'seagreen', backgroundColor:'antiquewhite'}} className={'d-flex float-start w-25 p-2 m-1 '} border={'secondary'} >
                     <span>Quiz: {s.quizQuestion}</span>
+                    <span>Answer: {s.quizAnswer}</span>
                     <span>Grade: {s.grade ?  s.grade : "not graded"}</span>
                     <span>Status: {s.finished ? "completed" : "incomplete"}</span>
 
                 </Card>
                 </>
             })}
-
+            </Col>
+            </div>
             </Card>
         </>
 

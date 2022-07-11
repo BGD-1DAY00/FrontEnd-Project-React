@@ -2,7 +2,7 @@ import {Quiz} from "../Quiz/Quiz.js";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {getQuizList} from "../Store/reduxFunctions";
-import {Card} from "react-bootstrap";
+import {Card, Col} from "react-bootstrap";
 import CardHeader from "react-bootstrap/CardHeader";
 
 export function QuizList() {
@@ -24,6 +24,8 @@ export function QuizList() {
     const gradedQuizList = quizList.filter(quiz => quiz.finished === true)
 
     return <>
+        <div className={'row'}>
+        <Col>
         <Card className={'m-2 col p-2'}>
         <CardHeader className={'h2 text-center'}>Unfinished Quizzes</CardHeader>
         <div className={'ungraded'}>
@@ -39,6 +41,8 @@ export function QuizList() {
             }
         </div>
             </Card>
+        </Col>
+        <Col>
         <Card className={'m-2 col p-2'}>
             <CardHeader className={'h2 text-center'}>Finished Quizzes</CardHeader>
         <div className={'graded'}>
@@ -53,6 +57,8 @@ export function QuizList() {
             }
         </div>
         </Card>
+        </Col>
+        </div>
     </>
 
 }
